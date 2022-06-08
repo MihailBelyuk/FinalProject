@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+    background-image: url("pictures/404.gif");
+    background-position: center;
+    background-size: unset;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+}

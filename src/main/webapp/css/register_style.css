@@ -1,0 +1,15 @@
+body{
+    background-image: url("pictures/fishing2.jpg");
+}
+body form {
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    background-color: rgba(213,216,202,0.8);
+    padding-bottom: 0;
+    position: center;
+}
+
