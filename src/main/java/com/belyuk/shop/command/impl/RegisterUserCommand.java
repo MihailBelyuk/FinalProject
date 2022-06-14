@@ -25,7 +25,7 @@ HttpSession session = request.getSession();
 //    String status = request.getParameter(AttributeParameterName.STATUS_ATTRIBUTE);
     String lastName = request.getParameter(AttributeParameterName.LAST_NAME_ATTRIBUTE);
     if (lastName == null){
-      session.setAttribute("empty_last_name_field", "Enter last name.");
+      session.setAttribute("empty_last_name_field", "Enter last name."); //todo
     }
     String name = request.getParameter(AttributeParameterName.NAME_ATTRIBUTE);
 

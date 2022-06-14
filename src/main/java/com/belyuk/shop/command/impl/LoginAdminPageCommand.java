@@ -6,10 +6,10 @@ import com.belyuk.shop.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-public class GoToAdminPageCommand implements Command {
+public class LoginAdminPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
-        HttpSession session = request.getSession();
+
         
         return null;
     }

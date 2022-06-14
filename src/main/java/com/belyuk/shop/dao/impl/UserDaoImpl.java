@@ -14,14 +14,14 @@ import org.apache.logging.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
   private static final Logger logger = LogManager.getLogger();
-  private static final String SELECT_LOGIN_PASSWORD = "SELECT password FROM users WHERE e_mail =?";
+  private static final String SELECT_LOGIN_PASSWORD =
+      "SELECT password, status FROM users WHERE e_mail =?";
   private static final String ADD_USER_STATEMENT = "INSERT INTO users VALUES (?,?,?,?,?,?,?)";
   private static final String FIND_ALL_USERS =
-      "SELECT id, status, last_name, name, password, e_mail, phone_number FROM users";
+      "SELECT id, status, last_name, name, e_mail, phone_number FROM users";
   private static UserDaoImpl instance = new UserDaoImpl();
 
   private UserDaoImpl() {}
@@ -63,26 +63,24 @@ public class UserDaoImpl implements UserDao {
     try (Connection connection = connectionPool.getConnection()) {
       PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_USERS);
       ResultSet resultSet = preparedStatement.executeQuery();
-      while(resultSet.next()){
-        String id= resultSet.getString(1);
+      while (resultSet.next()) {
+        String id = resultSet.getString(1);
         String status = resultSet.getString(2).toUpperCase();
         String lastName = resultSet.getString(3);
         String name = resultSet.getString(4);
-        String password = resultSet.getString(5);
-        String eMail = resultSet.getString(6);
-        String phoneNumber = resultSet.getString(7);
+        String eMail = resultSet.getString(5);
+        String phoneNumber = resultSet.getString(6);
         user = new User();
-        user.setUserId(Integer.parseInt(id));
+        user.setId(Integer.parseInt(id));
         user.setUserStatus(UserStatus.valueOf(status));
         user.setLastName(lastName);
         user.setName(name);
-        user.setPassword(password);
         user.seteMail(eMail);
         user.setPhoneNumber(phoneNumber);
         userList.add(user);
       }
     } catch (SQLException e) {
-      logger.log(Level.ERROR, "Unable to extract all users from DB.");
+      logger.log(Level.ERROR, "Unable to extract all users from DB.", e);
       throw new DaoException("Unable to extract all users from DB.", e);
     }
     return userList;

@@ -1,7 +1,7 @@
 package com.belyuk.shop.entity;
 
 public class User extends AbstractEntity {
-  private int userId;
+  private int id;
   private UserStatus userStatus;
   private String lastName;
   private String name;
@@ -13,7 +13,7 @@ public class User extends AbstractEntity {
   }
 
   public User(int userId, UserStatus userStatus, String lastName, String name, String password, String eMail, String phoneNumber) {
-    this.userId = userId;
+    this.id = userId;
     this.userStatus = userStatus;
     this.lastName = lastName;
     this.name = name;
@@ -22,12 +22,12 @@ public class User extends AbstractEntity {
     this.phoneNumber = phoneNumber;
   }
 
-  public int getUserId() {
-    return userId;
+  public int getId() {
+    return id;
   }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public UserStatus getUserStatus() {
@@ -85,7 +85,7 @@ public class User extends AbstractEntity {
 
     User user = (User) o;
 
-    if (userId != user.userId) return false;
+    if (id != user.id) return false;
     if (userStatus != user.userStatus) return false;
     if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
     if (name != null ? !name.equals(user.name) : user.name != null) return false;
@@ -96,7 +96,7 @@ public class User extends AbstractEntity {
 
   @Override
   public int hashCode() {
-    int result = userId;
+    int result = id;
     result = 31 * result + (userStatus != null ? userStatus.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     result = 31 * result + (name != null ? name.hashCode() : 0);
@@ -109,7 +109,7 @@ public class User extends AbstractEntity {
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("User{");
-    sb.append("userId=").append(userId);
+    sb.append("userId=").append(id);
     sb.append(", userStatus=").append(userStatus);
     sb.append(", lastName='").append(lastName).append('\'');
     sb.append(", name='").append(name).append('\'');

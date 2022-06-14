@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.login_window_background {
+    background-color: lightgray;
+
+}
+
+.login_form {
+    font-size: 20px;
+    padding-top: 1px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+body .sign_in_msg {
+    font-size: 50px;
+    text-align: center;
+    color: darkslategrey;
+    margin-top: 0;
+}
+.login_register_block{
+    text-align: center;
+}
+.login_button {
+    height: 50px;
+    width: 300px;
+    border-radius: 0;
+    border: 0;
+    background-color: rgba(25,137,10,0.8);
+    letter-spacing: 7px;
+    font-family: Arial, serif;
+    font-size: 20px;
+
+}
+.login_password_input input{
+    height: 45px;
+    width: 300px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom-width: 1px;
+    border-color: darkslategrey;
+    background-color: rgba(134,255,139,0.58);
+    text-align: center;
+    letter-spacing: 2px;
+}

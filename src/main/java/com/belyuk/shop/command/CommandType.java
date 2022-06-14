@@ -10,7 +10,6 @@ public enum CommandType {
   OPEN_REGISTRY_PAGE(new OpenRegistryPageCommand()),
   OPEN_LOGIN_PAGE(new OpenLoginPageCommand()),
   GO_TO_MAIN_PAGE(new GoToMainPageCommand()),
-  GO_TO_ADMIN_PAGE(new GoToAdminPageCommand()),
   SHOW_ALL_USERS(new ShowAllUsersCommand());
   Command command;
 

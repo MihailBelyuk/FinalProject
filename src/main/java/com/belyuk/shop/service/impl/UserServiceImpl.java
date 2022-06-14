@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean login(String login, String password) throws ServiceException {
-    if(login==null || password==null){
+    if (login == null || password == null) {
       logger.log(Level.ERROR, "Provided login or password is null!");
       throw new ServiceException("Provided login or password is null!");
     }
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         throw new ServiceException(
             "User login and password do not match DB stored login and password.", e);
       }
-     return true;
+      return true;
     }
     return false;
   }
@@ -63,13 +63,13 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<User> findAllUsers() throws ServiceException {
-    List<User> list= null;
+    List<User> list;
     try {
       list = userDao.selectAll();
-    } catch (DaoException e) { // TODO: catch + logg.
-      e.printStackTrace();
+    } catch (DaoException e) {
+      logger.log(Level.ERROR, "Unable to find users in DB.");
+      throw new ServiceException("Unable to find users in DB.");
     }
-
     return list;
   }
 }
