@@ -20,12 +20,12 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public List<User> selectAll() {
+    public List<Item> selectAll() {
         return null;
     }
 
     @Override
-    public Item update(Item item) {
-        return null;
+    public int update(Item item) {
+        return 0;
     }
 }

@@ -13,7 +13,10 @@ public class Router {
     this.pagePath = pagePath;
   }
 
-  public Router() {
+  public Router() {}
+
+  public Router(RouterType routerType) {
+    this.routerType = routerType;
   }
 
   public String getPagePath() {

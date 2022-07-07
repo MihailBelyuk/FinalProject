@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../css/main.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 </head>
 <body>
 Hello from admin
@@ -11,6 +11,7 @@ Hello from admin
     <input type="hidden" name="command" value="show_all_users"/>
     <input type="submit" value="show">
 </form>
+
 
 </body>
 </html>

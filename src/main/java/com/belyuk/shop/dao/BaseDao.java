@@ -11,7 +11,8 @@ public interface BaseDao<T extends AbstractEntity> {
 
   boolean delete(T t) throws DaoException;
 
-  List<User> selectAll() throws DaoException;
+  List<T> selectAll() throws DaoException;
 
-  T update(T t) throws DaoException;
+  int update(T t) throws DaoException;
+
 }

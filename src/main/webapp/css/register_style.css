@@ -1,15 +1,50 @@
-body{
-    background-image: url("pictures/fishing2.jpg");
-}
-body form {
-    width: 250px;
-    height: 50px;
+body .fill_in_register_form {
+    font-size: 50px;
     text-align: center;
-    font-size: 15px;
-    border: 0;
-    border-radius: 10px;
-    background-color: rgba(213,216,202,0.8);
-    padding-bottom: 0;
-    position: center;
+    color: darkslategrey;
+    margin-top: 0;
+    width: fit-content;
+    height: fit-content;
+    padding-top: 100px;
+    padding-left: 25%;
 }
+
+body .registration_form .message {
+    color: #ff19a8;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+body .registration_form {
+    font-family: Arial;
+    background-color: rgba(177, 158, 90, 0.7);
+    width: 400px;
+    height: fit-content;
+    text-align: center;
+    margin-left: 37%;
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: #2a2a2a;
+
+}
+
+body .registration_form .field {
+    background-color: #d4f49e;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: darkslategrey;
+    height: 30px;
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-family: Arial;
+}
+body .registration_form .label{
+    margin-bottom: 10px;
+}
+
 

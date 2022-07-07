@@ -2,6 +2,7 @@ package com.belyuk.shop.service.impl;
 
 import com.belyuk.shop.dao.impl.UserDaoImpl;
 import com.belyuk.shop.entity.User;
+import com.belyuk.shop.entity.UserRole;
 import com.belyuk.shop.exception.DaoException;
 import com.belyuk.shop.exception.ServiceException;
 import com.belyuk.shop.service.UserService;
@@ -46,14 +47,29 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean registerUser(User user) throws ServiceException {
-    if (user == null) {
-      logger.log(Level.ERROR, "User information is null!");
-      throw new ServiceException("User information is null!");
+  public boolean registerUser(
+      String lastName, String name, String password, String eMail, String phoneNumber)
+      throws ServiceException {
+    if (lastName == null
+        || name == null
+        || password == null
+        || eMail == null
+        || phoneNumber == null) {
+      logger.log(Level.ERROR, "User information is null in user register service.");
+      throw new ServiceException("User information is null in user register service.");
     }
+    User user = new User();
+    user.setLastName(lastName);
+    user.setName(name);
+    user.setPassword(password);
+    user.seteMail(eMail);
+    user.setPhoneNumber(phoneNumber);
+
+    user.setUserRole(UserRole.CLIENT);
     boolean addUser;
     try {
       addUser = userDao.add(user);
+
     } catch (DaoException e) {
       logger.log(Level.ERROR, "Failed to add user data into DB.", e);
       throw new ServiceException(e);
@@ -71,5 +87,70 @@ public class UserServiceImpl implements UserService {
       throw new ServiceException("Unable to find users in DB.");
     }
     return list;
+  }
+
+  public boolean deleteUser(User user) throws ServiceException {
+    if (user == null) {
+      logger.log(Level.ERROR, "Unable to delete user, because user provided user is null.");
+      throw new ServiceException("Unable to delete user, because user provided user is null.");
+    }
+    boolean deleteUser;
+    try {
+      deleteUser = userDao.delete(user);
+    } catch (DaoException e) {
+      logger.log(Level.ERROR, e); // TODO: exception/ logger
+      throw new ServiceException();
+    }
+    return deleteUser;
+  }
+
+  @Override
+  public boolean updateUser(
+      int id,
+      UserRole userRole,
+      String lastName,
+      String name,
+      String password,
+      String eMail,
+      String phoneNumber)
+      throws ServiceException {
+    if (id == 0
+        || userRole == null
+        || lastName == null
+        || name == null
+        || password == null
+        || eMail == null
+        || phoneNumber == null) {
+      logger.log(Level.ERROR, "User information is null in user update service.");
+      throw new ServiceException("User information is null in user update service.");
+    }
+    User user = new User();
+    user.setId(id);
+    user.setUserRole(userRole);
+    user.setLastName(lastName);
+    user.setName(name);
+    user.setPassword(password);
+    user.seteMail(eMail);
+    user.setPhoneNumber(phoneNumber);
+    try {
+      userDao.update(user);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  @Override
+  public User findUserById(int id) throws ServiceException {
+    if (id == 0) {
+      throw new ServiceException("User id can't be '0'");
+    }
+    User user;
+    try {
+      user = userDao.find(id);
+    } catch (DaoException e) {
+      throw new ServiceException(e); // TODO: log and exception
+    }
+    return user;
   }
 }

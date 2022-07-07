@@ -2,7 +2,6 @@
 
 .login_window_background {
     background-color: lightgray;
-
 }
 
 .login_form {
@@ -15,24 +14,33 @@
 body .sign_in_msg {
     font-size: 50px;
     text-align: center;
-    color: darkslategrey;
-    margin-top: 0;
+    color: #c3b071;
+    padding-left: 285px;
+    padding-top: 240px;
+    width: 800px;
+    height: fit-content;
 }
-.login_register_block{
+
+.login_register_block {
     text-align: center;
+
 }
+
 .login_button {
     height: 50px;
     width: 300px;
     border-radius: 0;
     border: 0;
-    background-color: rgba(25,137,10,0.8);
+    background-color: rgba(25, 137, 10, 0.8);
     letter-spacing: 7px;
     font-family: Arial, serif;
     font-size: 20px;
+    cursor: pointer;
+
 
 }
-.login_password_input input{
+
+.login_password_input input {
     height: 45px;
     width: 300px;
     border-radius: 0;
@@ -41,7 +49,13 @@ body .sign_in_msg {
     border-top: 0;
     border-bottom-width: 1px;
     border-color: darkslategrey;
-    background-color: rgba(134,255,139,0.58);
+    background-color: rgba(134, 255, 139, 0.58);
     text-align: center;
     letter-spacing: 2px;
 }
+
+body .pop {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 643px;
+}
+

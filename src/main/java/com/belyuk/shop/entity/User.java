@@ -1,20 +1,29 @@
 package com.belyuk.shop.entity;
 
 public class User extends AbstractEntity {
-  private int id;
-  private UserStatus userStatus;
+  private UserRole userRole;
   private String lastName;
   private String name;
   private String password;
   private String eMail;
   private String phoneNumber;
 
-  public User() {
+  public User(int id) {
+    super(id);
   }
 
-  public User(int userId, UserStatus userStatus, String lastName, String name, String password, String eMail, String phoneNumber) {
-    this.id = userId;
-    this.userStatus = userStatus;
+  public User() {
+    super();
+  }
+
+  public User(
+      UserRole userRole,
+      String lastName,
+      String name,
+      String password,
+      String eMail,
+      String phoneNumber) {
+    this.userRole = userRole;
     this.lastName = lastName;
     this.name = name;
     this.password = password;
@@ -22,20 +31,29 @@ public class User extends AbstractEntity {
     this.phoneNumber = phoneNumber;
   }
 
-  public int getId() {
-    return id;
+  public User(
+      int id,
+      UserRole userRole,
+      String lastName,
+      String name,
+      String password,
+      String eMail,
+      String phoneNumber) {
+    super(id);
+    this.userRole = userRole;
+    this.lastName = lastName;
+    this.name = name;
+    this.password = password;
+    this.eMail = eMail;
+    this.phoneNumber = phoneNumber;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public UserRole getUserRole() {
+    return userRole;
   }
 
-  public UserStatus getUserStatus() {
-    return userStatus;
-  }
-
-  public void setUserStatus(UserStatus userStatus) {
-    this.userStatus = userStatus;
+  public void setUserRole(UserRole userRole) {
+    this.userRole = userRole;
   }
 
   public String getLastName() {
@@ -85,8 +103,7 @@ public class User extends AbstractEntity {
 
     User user = (User) o;
 
-    if (id != user.id) return false;
-    if (userStatus != user.userStatus) return false;
+    if (userRole != user.userRole) return false;
     if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
     if (name != null ? !name.equals(user.name) : user.name != null) return false;
     if (password != null ? !password.equals(user.password) : user.password != null) return false;
@@ -96,8 +113,7 @@ public class User extends AbstractEntity {
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (userStatus != null ? userStatus.hashCode() : 0);
+    int result = userRole != null ? userRole.hashCode() : 0;
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (password != null ? password.hashCode() : 0);
@@ -109,8 +125,7 @@ public class User extends AbstractEntity {
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("User{");
-    sb.append("userId=").append(id);
-    sb.append(", userStatus=").append(userStatus);
+    sb.append("userRole=").append(userRole);
     sb.append(", lastName='").append(lastName).append('\'');
     sb.append(", name='").append(name).append('\'');
     sb.append(", password='").append(password).append('\'');
@@ -119,5 +134,4 @@ public class User extends AbstractEntity {
     sb.append('}');
     return sb.toString();
   }
-
 }

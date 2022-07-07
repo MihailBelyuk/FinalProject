@@ -3,7 +3,7 @@ package com.belyuk.shop.command;
 public enum AttributeParameterName {
   ;
   public static final String ID_ATTRIBUTE = "id";
-  public static final String STATUS_ATTRIBUTE = "status";
+  public static final String ROLE_ATTRIBUTE = "user_role";
   public static final String LAST_NAME_ATTRIBUTE = "last_name";
   public static final String NAME_ATTRIBUTE = "name";
   public static final String PASSWORD_ATTRIBUTE = "password";

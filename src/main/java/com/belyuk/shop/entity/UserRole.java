@@ -1,5 +1,5 @@
 package com.belyuk.shop.entity;
 
-public enum UserStatus {
+public enum UserRole {
     ADMIN,CLIENT
 }

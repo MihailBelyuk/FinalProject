@@ -2,10 +2,9 @@ package com.belyuk.shop.command.impl;
 
 import com.belyuk.shop.command.AttributeParameterName;
 import com.belyuk.shop.command.Command;
-import com.belyuk.shop.command.PagePath;
 import com.belyuk.shop.command.Router;
 import com.belyuk.shop.entity.User;
-import com.belyuk.shop.entity.UserStatus;
+import com.belyuk.shop.entity.UserRole;
 import com.belyuk.shop.exception.CommandException;
 import com.belyuk.shop.exception.ServiceException;
 import com.belyuk.shop.service.impl.UserServiceImpl;
@@ -17,6 +16,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+import static com.belyuk.shop.command.PagePath.*;
+import static com.belyuk.shop.command.Router.RouterType.*;
+
 public class LoginCommand implements Command {
   public static final Logger logger = LogManager.getLogger();
   private UserServiceImpl userService = UserServiceImpl.getInstance();
@@ -27,30 +29,31 @@ public class LoginCommand implements Command {
     String password = request.getParameter(AttributeParameterName.PASSWORD_ATTRIBUTE);
     String page = null;
     HttpSession session = request.getSession();
-    try {
+        try {
       if (userService.login(eMail, password)) {
         List<User> users = UserServiceImpl.getInstance().findAllUsers();
         for (User user : users) {
           if (user.geteMail().equals(eMail)) {
-            UserStatus status = user.getUserStatus();
+            UserRole status = user.getUserRole();
             switch (status) {
               case ADMIN:
-                page = PagePath.ADMIN_PAGE;
+                page = ADMIN_PAGE;
                 break;
               case CLIENT:
-                page = PagePath.MAIN_PAGE_PATH;
+                page = MAIN_PAGE_PATH;
                 break;
             }
           }
         }
+        session.setAttribute("logged_user", eMail);
       } else {
-        page = PagePath.LOGIN_PAGE_PATH;
+        page = LOGIN_PAGE_PATH;
         session.setAttribute("login_msg", "Incorrect login or password");
       }
     } catch (ServiceException e) {
       logger.log(Level.WARN, "Authentication failed.", e);
       throw new CommandException("Authentication failed.", e);
     }
-    return new Router(page, Router.RouterType.REDIRECT);
+    return new Router(page, REDIRECT);
   }
 }
