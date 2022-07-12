@@ -54,8 +54,8 @@ body .sign_in_msg {
     letter-spacing: 2px;
 }
 
-body .pop {
+body .pop_login {
     background-color: rgba(0, 0, 0, 0.6);
-    height: 643px;
+    height: 800px;
 }
 

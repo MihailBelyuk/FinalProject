@@ -3,7 +3,7 @@ package com.belyuk.shop.service.validator.impl;
 import com.belyuk.shop.service.validator.UserValidator;
 
 public class UserValidatorImpl implements UserValidator {
-  private static final String USER_SURNAME_REGEXP = "\\p{Alpha}{1,45}";
+  private static final String USER_LAST_NAME_REGEXP = "\\p{Alpha}{1,45}";
   private static final String USER_PASSWORD_REGEXP = ".{5,45}";
   private static final String USER_NAME_REGEXP = "\\p{Alpha}{1,45}";
   private static final String USER_EMAIL_REGEXP =
@@ -64,5 +64,13 @@ public class UserValidatorImpl implements UserValidator {
       return false;
     }
     return userName.matches(USER_NAME_REGEXP);
+  }
+
+  @Override
+  public boolean validateLastName(String lastName) {
+    if (lastName == null) {
+      return false;
+    }
+    return lastName.matches(USER_LAST_NAME_REGEXP);
   }
 }

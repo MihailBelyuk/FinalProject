@@ -48,6 +48,7 @@ public class Controller extends HttpServlet {
           break;
         case REDIRECT:
           response.sendRedirect(router.getPagePath());
+
           break;
         default:
           logger.log(Level.ERROR, "Incorrect router type " + router.getRouterType());

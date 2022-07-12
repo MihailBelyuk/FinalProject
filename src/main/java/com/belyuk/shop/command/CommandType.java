@@ -14,7 +14,8 @@ public enum CommandType {
   DELETE_USER(new DeleteUserCommand()),
   UPDATE_USER(new UpdateUserCommand()),
   GO_TO_USER_UPDATE_PAGE(new GoToUserUpdatePageCommand()),
-  CHANGE_LOCALE(new ChangeLocalizationCommand());
+  CHANGE_LOCALE(new ChangeLocalizationCommand()),
+  SHOW_ALL_ITEMS(new ShowAllItemsCommand());
   Command command;
 
   CommandType(Command command) {

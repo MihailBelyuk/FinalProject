@@ -6,10 +6,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 </head>
 <body>
-Hello from admin
+
 <form action="${pageContext.request.contextPath}/controller">
     <input type="hidden" name="command" value="show_all_users"/>
-    <input type="submit" value="show">
+    <input type="submit" value="Show all users">
+</form>
+<form action="${pageContext.request.contextPath}/controller">
+    <input type="hidden" name="command" value="show_all_items"/>
+    <input type="submit" value="Show all items">
 </form>
 
 

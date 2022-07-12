@@ -8,28 +8,36 @@ import com.belyuk.shop.exception.ServiceException;
 import com.belyuk.shop.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import static com.belyuk.shop.command.PagePath.*;
-import static com.belyuk.shop.command.Router.RouterType.*;
+import static com.belyuk.shop.command.AttributeParameterName.*;
+import static com.belyuk.shop.command.PagePath.USER_UPDATE_PAGE;
+import static com.belyuk.shop.command.Router.RouterType.FORWARD;
 
 public class GoToUserUpdatePageCommand implements Command {
-    private UserServiceImpl userService = UserServiceImpl.getInstance();
-    @Override
-    public Router execute(HttpServletRequest request) throws CommandException {
-        HttpSession session =request.getSession();
-        User user;
-        try {
-            user = userService.findUserById(Integer.parseInt(request.getParameter("userId")));
-            session.setAttribute( "user_role",user.getUserRole().toString());
-            session.setAttribute("last_name", user.getLastName());
-            session.setAttribute("name",user.getName());
-            session.setAttribute("password","Password");
-            session.setAttribute("e_mail", user.geteMail());
-            session.setAttribute("phone_number", user.getPhoneNumber());
-            session.setAttribute("id", request.getParameter("userId"));
-        } catch (ServiceException e) {
-            throw new CommandException(e); // TODO: log and exception
-        }
-        return new Router(USER_UPDATE_PAGE,FORWARD);
+  public static final Logger logger = LogManager.getLogger();
+  public static final String PASSWORD = "password";
+  private UserServiceImpl userService = UserServiceImpl.getInstance();
+
+  @Override
+  public Router execute(HttpServletRequest request) throws CommandException {
+    HttpSession session = request.getSession();
+    User user;
+    try {
+      user = userService.findUserById(Integer.parseInt(request.getParameter(USER_ID_PARAM)));
+      session.setAttribute(USER_ROLE_ATTRIBUTE, user.getUserRole().toString());
+      session.setAttribute(LAST_NAME_ATTRIBUTE, user.getLastName());
+      session.setAttribute(NAME_ATTRIBUTE, user.getName());
+      session.setAttribute(PASSWORD_ATTRIBUTE, PASSWORD);
+      session.setAttribute(EMAIL_ATTRIBUTE, user.geteMail());
+      session.setAttribute(PHONE_NUMBER_ATTRIBUTE, user.getPhoneNumber());
+      session.setAttribute(USER_ID_ATTRIBUTE, request.getParameter(USER_ID_PARAM));
+    } catch (ServiceException e) {
+      logger.log(Level.ERROR, "Failed to find user by ID.", e);
+      throw new CommandException("Failed to find user by ID.", e);
     }
+    return new Router(USER_UPDATE_PAGE, FORWARD);
+  }
 }

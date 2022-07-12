@@ -12,4 +12,6 @@ public interface UserValidator {
   boolean validateAddress(String address);
 
   boolean validateUserName(String userName);
+
+  boolean validateLastName(String lastName);
 }

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setLocale value="${localization}" scope="session"/>
 <fmt:setBundle basename="prop.localization"/>
 
 <fmt:message key="login.greeting" var="greeting"/>
@@ -21,7 +21,7 @@
     <c:import url="main.jsp"/>
 </head>
 <body>
-<div class="pop">
+<div class="pop_login">
     <div class="sign_in_msg">${greeting}</div>
     <div class="login_register_block">
         <form action="${pageContext.request.contextPath}/controller">

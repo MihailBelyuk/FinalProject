@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setLocale value="${localization}" scope="session"/>
 <fmt:setBundle basename="prop.localization"/>
 
 <fmt:message key="header.about_us" var="about_us" />
@@ -44,12 +44,12 @@
 <div class="lang">
     <form action="${pageContext.request.contextPath}/controller" >
         <input type="hidden" name="command" value="change_locale">
-        <input type="hidden" name="locale" value="ru">
+        <input type="hidden" name="locale_param" value="ru">
         <input type="submit" value="РУ">
     </form>
     <form action="${pageContext.request.contextPath}/controller">
         <input type="hidden" name="command" value="change_locale">
-        <input type="hidden" name="locale" value="en">
+        <input type="hidden" name="locale_param" value="en">
         <input type="submit" value="EN">
     </form>
 </div>

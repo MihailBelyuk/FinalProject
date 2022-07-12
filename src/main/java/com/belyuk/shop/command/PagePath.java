@@ -10,4 +10,5 @@ public enum PagePath {
   public static final String USERS_PAGE = "pages/users.jsp";
   public static final String ADMIN_PAGE = "pages/admin.jsp";
   public static final String USER_UPDATE_PAGE = "pages/user_update.jsp";
+  public static final String ITEMS_PAGE = "pages/items.jsp";
 }

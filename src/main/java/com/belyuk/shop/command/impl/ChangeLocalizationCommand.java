@@ -6,19 +6,27 @@ import com.belyuk.shop.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import static com.belyuk.shop.command.AttributeParameterName.*;
+
 public class ChangeLocalizationCommand implements Command {
+
+  enum  Localization{
+    ;
+    public static final String RU = "ru_RU";
+    public static final String EN = "en_US";
+  }
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {
     HttpSession session = request.getSession();
-    String locale = request.getParameter("locale");
-    String currentPage = String.valueOf(session.getAttribute("current_page"));
+    String locale = request.getParameter(LOCALE_PARAM);
+    String currentPage = String.valueOf(session.getAttribute(CURRENT_PAGE));
     switch (locale) {
-      case "ru":
-        session.setAttribute("locale", "ru_RU");
+      case RU_PARAMETER:
+        session.setAttribute(LOCALIZATION, Localization.RU);
         break;
-      case "en":
-        session.setAttribute("locale", "en_US");
+      case EN_PARAMETER:
+        session.setAttribute(LOCALIZATION, Localization.EN);
         break;
     }
     return new Router(currentPage, Router.RouterType.FORWARD);

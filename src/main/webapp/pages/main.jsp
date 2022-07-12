@@ -11,5 +11,8 @@
 <body>
 <c:import url="header.jsp"/>
 <%--    ${filter_attribute}--%>
+<div class="reg_success_message">
+    <c:out value="${registration_successful}"/>
+</div>
 </body>
 </html>

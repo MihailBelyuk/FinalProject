@@ -15,6 +15,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.belyuk.shop.dao.ColumnName.*;
+
 public class UserDaoImpl implements UserDao {
   private static final Logger logger = LogManager.getLogger();
   private static final String SELECT_LOGIN_PASSWORD =
@@ -30,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 
   private static UserDaoImpl instance = new UserDaoImpl();
   private ConnectionPool connectionPool = ConnectionPool.getInstance();
-  private Utility utility =Utility.getInstance();
+  private Utility utility = Utility.getInstance();
 
   private UserDaoImpl() {}
 
@@ -39,7 +41,11 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public boolean add(User user) throws DaoException { // todo null check everywhere
+  public boolean add(User user) throws DaoException {
+    if (user == null) {
+      logger.log(Level.ERROR, "Unable to add user information to the DB, because user is null.");
+      throw new DaoException("Unable to add user information to the DB, because user is null.");
+    }
     try (Connection connection = connectionPool.getConnection()) {
       PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER_STATEMENT);
       String hashPassword = Utility.getInstance().encodePassword(user.getPassword());
@@ -59,12 +65,19 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public boolean delete(User user) throws DaoException {
+    if (user == null) {
+      logger.log(
+          Level.ERROR, "Unable to delete user information from the DB, because user is null.");
+      throw new DaoException(
+          "Unable to delete user information from the DB, because user is null.");
+    }
     try (Connection connection = connectionPool.getConnection()) {
       PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER);
       preparedStatement.setInt(1, user.getId());
       return preparedStatement.execute();
-    } catch (SQLException e) { // TODO: exception and log
-      throw new DaoException();
+    } catch (SQLException e) {
+      logger.log(Level.ERROR, "Failed to delete user from DB.", e);
+      throw new DaoException("Failed to delete user from DB.", e);
     }
   }
 
@@ -100,19 +113,25 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public int update(User user) throws DaoException {
-    String hashPassword=utility.encodePassword(user.getPassword());
+    if (user == null) {
+      logger.log(
+          Level.ERROR, "Unable to update  user information in the DB, because user is null.");
+      throw new DaoException("Unable to update  user information in the DB, because user is null.");
+    }
+    String hashPassword = utility.encodePassword(user.getPassword());
     try (Connection connection = connectionPool.getConnection()) {
       PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER);
-      preparedStatement.setString(1,String.valueOf(user.getUserRole()).toLowerCase());
+      preparedStatement.setString(1, String.valueOf(user.getUserRole()).toLowerCase());
       preparedStatement.setString(2, user.getLastName());
       preparedStatement.setString(3, user.getName());
       preparedStatement.setString(4, hashPassword);
       preparedStatement.setString(5, user.geteMail());
       preparedStatement.setString(6, user.getPhoneNumber());
-      preparedStatement.setInt(7,user.getId());
+      preparedStatement.setInt(7, user.getId());
       return preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      throw new DaoException(e); // TODO: log and exception;
+      logger.log(Level.ERROR, "Failed to update user information in the DB.", e);
+      throw new DaoException("Failed to update user information in the DB.", e);
     }
   }
 
@@ -137,22 +156,27 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public User find(int id) throws DaoException {
+    if (id == 0) {
+      logger.log(Level.ERROR, "Provided user id is '0'");
+      throw new DaoException("Provided user id is '0'");
+    }
     User user = null;
     try (Connection connection = connectionPool.getConnection()) {
       PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER);
-      preparedStatement.setInt(1,id);
+      preparedStatement.setInt(1, id);
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
-        UserRole userRole = UserRole.valueOf(resultSet.getString("user_role").toUpperCase());
-        String lastName = resultSet.getString("last_name");
-        String name = resultSet.getString("name");
-        String password = resultSet.getString("password");
-        String e_mail = resultSet.getString("e_mail");
-        String phoneNumber = resultSet.getString("phone_number");
+        UserRole userRole = UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase());
+        String lastName = resultSet.getString(LAST_NAME);
+        String name = resultSet.getString(NAME);
+        String password = resultSet.getString(PASSWORD);
+        String e_mail = resultSet.getString(E_MAIL);
+        String phoneNumber = resultSet.getString(PHONE_NUMBER);
         user = new User(userRole, lastName, name, password, e_mail, phoneNumber);
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      logger.log(Level.ERROR, "Unable to find user with ID" + id, e);
+      throw new DaoException("Unable to find user by ID." + id, e);
     }
     return user;
   }

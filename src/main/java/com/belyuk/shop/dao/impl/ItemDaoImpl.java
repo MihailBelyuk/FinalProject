@@ -28,4 +28,9 @@ public class ItemDaoImpl implements ItemDao {
     public int update(Item item) {
         return 0;
     }
+
+    @Override
+    public Item find(long id) {
+        return null;
+    }
 }

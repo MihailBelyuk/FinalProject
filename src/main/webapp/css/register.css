@@ -1,7 +1,7 @@
-body .fill_in_register_form {
+body .fill_in_register_form_greeting {
     font-size: 50px;
     text-align: center;
-    color: darkslategrey;
+    color: #d4f49e;
     margin-top: 0;
     width: fit-content;
     height: fit-content;
@@ -10,7 +10,7 @@ body .fill_in_register_form {
 }
 
 body .registration_form .message {
-    color: #ff19a8;
+    color: saddlebrown;
     font-size: 15px;
     letter-spacing: 1px;
 }
@@ -22,6 +22,8 @@ body .registration_form {
     height: fit-content;
     text-align: center;
     margin-left: 37%;
+    margin-top: 30px;
+    padding-bottom: 20px;
     font-size: 20px;
     letter-spacing: 5px;
     color: #2a2a2a;
@@ -40,11 +42,27 @@ body .registration_form .field {
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
     font-family: Arial;
 }
 body .registration_form .label{
     margin-bottom: 10px;
 }
+body .pop_register {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 800px;
+}
 
+.register_btn {
+    color: black;
+    background-color:  rgba(25, 137, 10, 0.8);
+    font-family: Arial, serif;
+    letter-spacing: 3px;
+    border: 0;
+    height: 35px;
+    width: 300px;
+    font-size: 20px;
+    cursor: pointer;
+
+}
 

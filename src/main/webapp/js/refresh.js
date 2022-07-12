@@ -1,0 +1,1 @@
+setTimeout("${current_page}",1)

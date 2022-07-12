@@ -64,15 +64,14 @@ public class UserServiceImpl implements UserService {
     user.setPassword(password);
     user.seteMail(eMail);
     user.setPhoneNumber(phoneNumber);
-
     user.setUserRole(UserRole.CLIENT);
     boolean addUser;
     try {
       addUser = userDao.add(user);
 
     } catch (DaoException e) {
-      logger.log(Level.ERROR, "Failed to add user data into DB.", e);
-      throw new ServiceException(e);
+      logger.log(Level.ERROR, "Failed to register user.", e);
+      throw new ServiceException("Failed to register user.", e);
     }
     return addUser;
   }
@@ -83,8 +82,8 @@ public class UserServiceImpl implements UserService {
     try {
       list = userDao.selectAll();
     } catch (DaoException e) {
-      logger.log(Level.ERROR, "Unable to find users in DB.");
-      throw new ServiceException("Unable to find users in DB.");
+      logger.log(Level.ERROR, "Unable to find all users in DB.");
+      throw new ServiceException("Unable to find all users in DB.");
     }
     return list;
   }
@@ -98,8 +97,8 @@ public class UserServiceImpl implements UserService {
     try {
       deleteUser = userDao.delete(user);
     } catch (DaoException e) {
-      logger.log(Level.ERROR, e); // TODO: exception/ logger
-      throw new ServiceException();
+      logger.log(Level.ERROR, "Delete user service failed", e);
+      throw new ServiceException("Delete user service failed", e);
     }
     return deleteUser;
   }
@@ -134,8 +133,9 @@ public class UserServiceImpl implements UserService {
     user.setPhoneNumber(phoneNumber);
     try {
       userDao.update(user);
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (DaoException e) {
+      logger.log(Level.ERROR, "Update user service failed", e);
+      throw new ServiceException("Update user service failed", e);
     }
     return false;
   }
@@ -149,7 +149,8 @@ public class UserServiceImpl implements UserService {
     try {
       user = userDao.find(id);
     } catch (DaoException e) {
-      throw new ServiceException(e); // TODO: log and exception
+      logger.log(Level.ERROR, "Find user by ID service failed", e);
+      throw new ServiceException("Find user by ID service failed", e);
     }
     return user;
   }

@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <html>
 <head>
-    <title>All users</title>
+    <title>All items</title>
 </head>
 <body>
 <div id="content">
