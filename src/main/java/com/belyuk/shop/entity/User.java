@@ -1,6 +1,11 @@
 package com.belyuk.shop.entity;
 
+import java.io.Serial;
+
 public class User extends AbstractEntity {
+  
+  @Serial
+  private static final long serialVersionUID = 2L;
   private UserRole userRole;
   private String lastName;
   private String name;

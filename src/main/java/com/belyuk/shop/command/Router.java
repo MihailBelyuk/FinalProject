@@ -1,6 +1,7 @@
 package com.belyuk.shop.command;
 
 public class Router {
+
   private String pagePath;
   private RouterType routerType;
 

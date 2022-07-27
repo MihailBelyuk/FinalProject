@@ -18,6 +18,7 @@ import java.util.List;
 import static com.belyuk.shop.dao.ColumnName.*;
 
 public class UserDaoImpl implements UserDao {
+
   private static final Logger logger = LogManager.getLogger();
   private static final String SELECT_LOGIN_PASSWORD =
       "SELECT password, user_role FROM users WHERE e_mail =?";
@@ -27,8 +28,9 @@ public class UserDaoImpl implements UserDao {
   private static final String DELETE_USER = "DELETE FROM users WHERE  id=?";
   private static final String UPDATE_USER =
       "UPDATE users SET user_role=?, last_name = ?, name = ?, password = ?, e_mail = ?, phone_number=? WHERE id=?";
-  private static final String FIND_USER =
+  private static final String FIND_USER_BY_ID =
       "SELECT user_role,last_name, name, password, e_mail, phone_number FROM users WHERE id =?";
+  private static final String FIND_USER_BY_E_MAIL = "SELECT * FROM users WHERE e_mail=?";
 
   private static UserDaoImpl instance = new UserDaoImpl();
   private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -137,6 +139,10 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public boolean authenticate(String login, String password) throws DaoException {
+    if (login == null || password == null) {
+      logger.log(Level.ERROR, "Failed to authenticate because one or more parameters is null");
+      throw new DaoException("Failed to authenticate because one or more parameters is null");
+    }
     String hashPassword = utility.encodePassword(password);
     boolean match = false;
     try (Connection connection = connectionPool.getConnection()) {
@@ -155,14 +161,14 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public User find(int id) throws DaoException {
+  public User findById(int id) throws DaoException {
     if (id == 0) {
       logger.log(Level.ERROR, "Provided user id is '0'");
       throw new DaoException("Provided user id is '0'");
     }
     User user = null;
     try (Connection connection = connectionPool.getConnection()) {
-      PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER);
+      PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_ID);
       preparedStatement.setInt(1, id);
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
@@ -175,9 +181,26 @@ public class UserDaoImpl implements UserDao {
         user = new User(userRole, lastName, name, password, e_mail, phoneNumber);
       }
     } catch (SQLException e) {
-      logger.log(Level.ERROR, "Unable to find user with ID" + id, e);
-      throw new DaoException("Unable to find user by ID." + id, e);
+      logger.log(Level.ERROR, "Unable to find user with " + id, e);
+      throw new DaoException("Unable to find user by " + id, e);
     }
     return user;
+  }
+
+  @Override
+  public boolean checkIfEmailExists(String email) throws DaoException {
+    if (email == null) {
+      logger.log(Level.ERROR, "Unable to find by email, because email is null.");
+      throw new DaoException("Unable to find by email, because email is null.");
+    }
+    try (Connection connection = connectionPool.getConnection()) {
+      PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_E_MAIL);
+      preparedStatement.setString(1, email);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      return resultSet.next();
+    } catch (SQLException e) {
+      logger.log(Level.ERROR, "Failed to receive e-mail address from DB.", e);
+      throw new DaoException("Failed to receive e-mail address from DB.", e);
+    }
   }
 }

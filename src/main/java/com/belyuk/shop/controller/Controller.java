@@ -1,10 +1,15 @@
 package com.belyuk.shop.controller;
 
-import com.belyuk.shop.command.*;
+import com.belyuk.shop.command.Command;
+import com.belyuk.shop.command.Router;
+import com.belyuk.shop.command.constant.AttributeParameterName;
+import com.belyuk.shop.command.constant.CommandType;
+import com.belyuk.shop.command.constant.PagePath;
 import com.belyuk.shop.exception.CommandException;
 import com.belyuk.shop.pool.ConnectionPool;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,9 +20,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/** The type Controller. Extends HttpServlet and processes the commands. */
 @WebServlet(
     name = "Controller",
     urlPatterns = {"/controller", "*.do"})
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024,
+    maxRequestSize = 1024 * 1024,
+    maxFileSize = 1024 * 1024)
 public class Controller extends HttpServlet {
   private static final Logger logger = LogManager.getLogger();
 
@@ -34,9 +44,7 @@ public class Controller extends HttpServlet {
 
   public void processRequest(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-//    response.setContentType("text/html");
     String commandName = request.getParameter(AttributeParameterName.COMMAND);
-
     Router router;
     try {
       Command command = CommandType.define(commandName);
@@ -48,14 +56,13 @@ public class Controller extends HttpServlet {
           break;
         case REDIRECT:
           response.sendRedirect(router.getPagePath());
-
           break;
         default:
           logger.log(Level.ERROR, "Incorrect router type " + router.getRouterType());
-          response.sendRedirect(PagePath.ERROR_500);
+          response.sendRedirect(PagePath.ERROR_500_PAGE);
       }
     } catch (CommandException e) {
-      logger.log(Level.ERROR,"Unable to define router type.", e);
+      logger.log(Level.ERROR, "Unable to define router type.", e);
     }
   }
 

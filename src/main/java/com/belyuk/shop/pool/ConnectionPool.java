@@ -17,11 +17,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
+
   private static final Logger logger = LogManager.getLogger();
-  private static final int DEFAULT_POOL_SIZE = 8;
   private static final String URL = "url";
   private static final String DRIVER = "driver";
   private static final String DB_PROPERTIES = "prop/db.properties";
+  private static final int DEFAULT_POOL_SIZE = 8;
   private static ConnectionPool instance;
   private static Properties dbProperties = new Properties();
   private static ReentrantLock lock = new ReentrantLock();
