@@ -1,6 +1,9 @@
-package com.belyuk.shop.command;
+package com.belyuk.shop.command.constant;
 
+import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.impl.*;
+import com.belyuk.shop.command.impl.admin.*;
+import com.belyuk.shop.command.impl.navigation.*;
 
 public enum CommandType {
   REGISTER(new RegisterUserCommand()),
@@ -15,7 +18,9 @@ public enum CommandType {
   UPDATE_USER(new UpdateUserCommand()),
   GO_TO_USER_UPDATE_PAGE(new GoToUserUpdatePageCommand()),
   CHANGE_LOCALE(new ChangeLocalizationCommand()),
-  SHOW_ALL_ITEMS(new ShowAllItemsCommand());
+  SHOW_ALL_ITEMS(new ShowAllItemsCommand()),
+  ADD_NEW_ITEM(new AddNewItemCommand()),
+  GO_TO_ADD_ITEM_PAGE(new GoToAddItemPageCommand());
   Command command;
 
   CommandType(Command command) {

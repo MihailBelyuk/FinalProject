@@ -1,4 +1,4 @@
-package com.belyuk.shop.command.impl;
+package com.belyuk.shop.command.impl.admin;
 
 import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.Router;
@@ -12,11 +12,11 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.belyuk.shop.command.AttributeParameterName.*;
+import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 
 public class UpdateUserCommand implements Command {
   private static final Logger logger = LogManager.getLogger();
-  private UserServiceImpl userService = UserServiceImpl.getInstance();
+  private UserServiceImpl userService = UserServiceImpl.getUserService();
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {

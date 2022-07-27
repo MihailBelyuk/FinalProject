@@ -1,4 +1,4 @@
-package com.belyuk.shop.command.impl;
+package com.belyuk.shop.command.impl.navigation;
 
 import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.Router;
@@ -12,14 +12,14 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.belyuk.shop.command.AttributeParameterName.*;
-import static com.belyuk.shop.command.PagePath.USER_UPDATE_PAGE;
+import static com.belyuk.shop.command.constant.AttributeParameterName.*;
+import static com.belyuk.shop.command.constant.PagePath.USER_UPDATE_PAGE;
 import static com.belyuk.shop.command.Router.RouterType.FORWARD;
 
 public class GoToUserUpdatePageCommand implements Command {
   public static final Logger logger = LogManager.getLogger();
   public static final String PASSWORD = "password";
-  private UserServiceImpl userService = UserServiceImpl.getInstance();
+  private UserServiceImpl userService = UserServiceImpl.getUserService();
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {

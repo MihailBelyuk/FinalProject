@@ -15,6 +15,10 @@
     <input type="hidden" name="command" value="show_all_items"/>
     <input type="submit" value="Show all items">
 </form>
+<form action="${pageContext.request.contextPath}/controller">
+    <input type="hidden" name="command" value="go_to_add_item_page"/>
+    <input type="submit" value="Add item">
+</form>
 
 
 </body>

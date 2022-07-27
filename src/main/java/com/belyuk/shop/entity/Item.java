@@ -1,12 +1,15 @@
 package com.belyuk.shop.entity;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
-import java.sql.Blob;
 
 public class Item extends AbstractEntity {
-  private String name;
-  private BrandName brandName;
+
   private ItemCategory itemCategory;
+  private String brandName;
+  private InputStream picture;
+  private String name;
+  private String description;
   private BigDecimal price;
   private boolean inStock;
 
@@ -17,13 +20,47 @@ public class Item extends AbstractEntity {
   public Item() {
     super();
   }
-public Item(String name,BrandName brandName,ItemCategory itemCategory,BigDecimal price,boolean inStock){
-    this.name = name;
-    this.brandName = brandName;
+
+  public Item(
+      ItemCategory itemCategory,
+      String brandName,
+      InputStream picture,
+      String name,
+      String description,
+      BigDecimal price,
+      boolean inStock) {
     this.itemCategory = itemCategory;
+    this.brandName = brandName;
+    this.picture=picture;
+    this.name = name;
+    this.description=description;
     this.price = price;
-    this.inStock=inStock;
-}
+    this.inStock = inStock;
+  }
+
+  public ItemCategory getItemCategory() {
+    return itemCategory;
+  }
+
+  public void setItemCategory(ItemCategory itemCategory) {
+    this.itemCategory = itemCategory;
+  }
+
+  public String getBrandName() {
+    return brandName;
+  }
+
+  public void setBrandName(String brandName) {
+    this.brandName = brandName;
+  }
+
+  public InputStream getPicture() {
+    return picture;
+  }
+
+  public void setPicture(InputStream picture) {
+    this.picture = picture;
+  }
 
   public String getName() {
     return name;
@@ -33,20 +70,12 @@ public Item(String name,BrandName brandName,ItemCategory itemCategory,BigDecimal
     this.name = name;
   }
 
-  public BrandName getBrandName() {
-    return brandName;
+  public String getDescription() {
+    return description;
   }
 
-  public void setBrandName(BrandName brandName) {
-    this.brandName = brandName;
-  }
-
-  public ItemCategory getItemCategory() {
-    return itemCategory;
-  }
-
-  public void setItemCategory(ItemCategory itemCategory) {
-    this.itemCategory = itemCategory;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public BigDecimal getPrice() {
@@ -74,18 +103,22 @@ public Item(String name,BrandName brandName,ItemCategory itemCategory,BigDecimal
     Item item = (Item) o;
 
     if (inStock != item.inStock) return false;
-    if (name != null ? !name.equals(item.name) : item.name != null) return false;
-    if (brandName != null ? !brandName.equals(item.brandName) : item.brandName != null) return false;
     if (itemCategory != item.itemCategory) return false;
+    if (brandName != null ? !brandName.equals(item.brandName) : item.brandName != null) return false;
+    if (picture != null ? !picture.equals(item.picture) : item.picture != null) return false;
+    if (name != null ? !name.equals(item.name) : item.name != null) return false;
+    if (description != null ? !description.equals(item.description) : item.description != null) return false;
     return price != null ? price.equals(item.price) : item.price == null;
   }
 
   @Override
   public int hashCode() {
     int result = super.hashCode();
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (brandName != null ? brandName.hashCode() : 0);
     result = 31 * result + (itemCategory != null ? itemCategory.hashCode() : 0);
+    result = 31 * result + (brandName != null ? brandName.hashCode() : 0);
+    result = 31 * result + (picture != null ? picture.hashCode() : 0);
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (description != null ? description.hashCode() : 0);
     result = 31 * result + (price != null ? price.hashCode() : 0);
     result = 31 * result + (inStock ? 1 : 0);
     return result;
@@ -94,9 +127,11 @@ public Item(String name,BrandName brandName,ItemCategory itemCategory,BigDecimal
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("Item{");
-    sb.append("name='").append(name).append('\'');
+    sb.append("itemCategory=").append(itemCategory);
     sb.append(", brandName=").append(brandName);
-    sb.append(", itemCategory=").append(itemCategory);
+    sb.append(", picture='").append(picture).append('\'');
+    sb.append(", name='").append(name).append('\'');
+    sb.append(", description='").append(description).append('\'');
     sb.append(", price=").append(price);
     sb.append(", inStock=").append(inStock);
     sb.append('}');

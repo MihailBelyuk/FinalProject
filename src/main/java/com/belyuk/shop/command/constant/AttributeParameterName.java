@@ -1,4 +1,4 @@
-package com.belyuk.shop.command;
+package com.belyuk.shop.command.constant;
 
 public enum AttributeParameterName {
   ;
@@ -14,6 +14,7 @@ public enum AttributeParameterName {
   public static final String LOCALIZATION = "localization";
   public static final String ALL_USERS = "all_users";
   // parameters
+    // user
   public static final String COMMAND = "command";
   public static final String RU_PARAMETER = "ru";
   public static final String EN_PARAMETER = "en";
@@ -25,4 +26,14 @@ public enum AttributeParameterName {
   public static final String PASSWORD_PARAM = "password";
   public static final String EMAIL_PARAM = "e_mail";
   public static final String PHONE_NUMBER_PARAM = "phone_number";
+    //item
+  public static final String ITEM_CATEGORY="item_category";
+  public static final String BRAND="brand";
+  public static final String ITEM_NAME="item_name";
+  public static final String DESCRIPTION="description";
+  public static final String STOCK="stock";
+  public static final String PICTURE="picture";
+
+
+
 }

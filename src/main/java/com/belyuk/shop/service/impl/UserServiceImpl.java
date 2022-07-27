@@ -15,13 +15,14 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
   private static final UserDaoImpl userDao = UserDaoImpl.getInstance();
+  private static final UserServiceImpl userService = new UserServiceImpl();
   private static Logger logger = LogManager.getLogger();
-  private static UserServiceImpl instance = new UserServiceImpl();
+
 
   private UserServiceImpl() {}
 
-  public static UserServiceImpl getInstance() {
-    return instance;
+  public static UserServiceImpl getUserService() {
+    return userService;
   }
 
   @Override

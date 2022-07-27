@@ -6,7 +6,7 @@ import com.belyuk.shop.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-import static com.belyuk.shop.command.AttributeParameterName.*;
+import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 
 public class ChangeLocalizationCommand implements Command {
 
