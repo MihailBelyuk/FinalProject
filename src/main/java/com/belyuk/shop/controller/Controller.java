@@ -32,6 +32,7 @@ public class Controller extends HttpServlet {
   private static final Logger logger = LogManager.getLogger();
 
   public void init() {
+
     logger.log(Level.INFO, "initServlet");
     ConnectionPool.getInstance();
   }
@@ -44,6 +45,10 @@ public class Controller extends HttpServlet {
 
   public void processRequest(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+    //    response.setContentType("text/html");
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
     String commandName = request.getParameter(AttributeParameterName.COMMAND);
     Router router;
     try {

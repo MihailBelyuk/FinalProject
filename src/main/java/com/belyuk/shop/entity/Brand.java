@@ -1,7 +1,10 @@
 package com.belyuk.shop.entity;
 
 public class Brand extends AbstractEntity {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
   private String name;
 
   public Brand(int id) {

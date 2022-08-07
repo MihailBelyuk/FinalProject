@@ -3,6 +3,7 @@ package com.belyuk.shop.command.constant;
 public enum AttributeParameterName {
   ;
   // attributes
+<<<<<<< HEAD
   // user
   public static final String USER_ID_ATTR = "user_id";
   public static final String USER_ROLE_ATTR = "user_role";
@@ -46,6 +47,20 @@ public enum AttributeParameterName {
 
   // parameters
   // user
+=======
+  public static final String USER_ID_ATTRIBUTE = "user_id";
+  public static final String USER_ROLE_ATTRIBUTE = "user_role";
+  public static final String LAST_NAME_ATTRIBUTE = "last_name";
+  public static final String NAME_ATTRIBUTE = "name";
+  public static final String PASSWORD_ATTRIBUTE = "password";
+  public static final String EMAIL_ATTRIBUTE = "e_mail";
+  public static final String PHONE_NUMBER_ATTRIBUTE = "phone_number";
+  public static final String CURRENT_PAGE = "current_page";
+  public static final String LOCALIZATION = "localization";
+  public static final String ALL_USERS = "all_users";
+  // parameters
+    // user
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
   public static final String COMMAND = "command";
   public static final String RU_PARAMETER = "ru";
   public static final String EN_PARAMETER = "en";
@@ -57,6 +72,7 @@ public enum AttributeParameterName {
   public static final String PASSWORD_PARAM = "password";
   public static final String EMAIL_PARAM = "e_mail";
   public static final String PHONE_NUMBER_PARAM = "phone_number";
+<<<<<<< HEAD
 
   // item
   public static final String ITEM_CATEGORY = "item_category";
@@ -71,4 +87,16 @@ public enum AttributeParameterName {
   //cart
   public static final String ITEMS_IN_CART="items_in_cart";
   public static final String EMPTY_CART="empty_cart";
+=======
+    //item
+  public static final String ITEM_CATEGORY="item_category";
+  public static final String BRAND="brand";
+  public static final String ITEM_NAME="item_name";
+  public static final String DESCRIPTION="description";
+  public static final String STOCK="stock";
+  public static final String PICTURE="picture";
+
+
+
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 }

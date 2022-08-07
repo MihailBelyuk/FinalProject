@@ -17,7 +17,11 @@ import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 public class UpdateUserCommand implements Command {
 
   private static final Logger logger = LogManager.getLogger();
+<<<<<<< HEAD
   private final UserServiceImpl userService = UserServiceImpl.getUserService();
+=======
+  private UserServiceImpl userService = UserServiceImpl.getUserService();
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {

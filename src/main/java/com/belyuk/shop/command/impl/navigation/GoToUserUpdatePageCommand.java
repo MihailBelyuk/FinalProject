@@ -12,6 +12,11 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+<<<<<<< HEAD
+=======
+import static com.belyuk.shop.command.constant.AttributeParameterName.*;
+import static com.belyuk.shop.command.constant.PagePath.USER_UPDATE_PAGE;
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 import static com.belyuk.shop.command.Router.RouterType.FORWARD;
 import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 import static com.belyuk.shop.command.constant.PagePath.USER_UPDATE_PAGE;

@@ -17,6 +17,10 @@ public class UserServiceImpl implements UserService {
   private static final UserDaoImpl userDao = UserDaoImpl.getInstance();
   private static final UserServiceImpl userService = new UserServiceImpl();
   private static Logger logger = LogManager.getLogger();
+<<<<<<< HEAD:src/main/java/com/belyuk/shop/entity/service/impl/UserServiceImpl.java
+=======
+
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2:src/main/java/com/belyuk/shop/service/impl/UserServiceImpl.java
 
   private UserServiceImpl() {}
 

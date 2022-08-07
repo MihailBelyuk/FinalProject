@@ -11,7 +11,11 @@ public enum PagePath {
   public static final String ADMIN_PAGE = "pages/admin.jsp";
   public static final String USER_UPDATE_PAGE = "pages/user_update.jsp";
   public static final String ITEMS_PAGE = "pages/items.jsp";
+<<<<<<< HEAD
   public static final String ADD_ITEM_PAGE = "pages/add_item.jsp";
   public static final String CLIENT_PAGE = "pages/client_page.jsp";
   public static final String CART_PAGE = "pages/cart.jsp";
+=======
+  public static final String ADD_ITEM_PAGE="pages/add_item.jsp";
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 }

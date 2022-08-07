@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,6 +14,15 @@
      <div style="color: red">
         <c:out value="${fields_must_be_filled}"/>
     </div>
+=======
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Add new item</title>
+</head>
+<body>
+<form action="${pageContext.request.contextPath}/controller" enctype="multipart/form-data" method="post">
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
     <label for="item_category">Category</label>
     <select id="item_category" name="item_category">
         <option value="none" selected></option>
@@ -36,7 +46,11 @@
     <textarea name="description" id="description" cols="20" rows="5"></textarea>
     <br>
     <label for="price">Price</label>
+<<<<<<< HEAD
     <input type="number" id="price" name="price" value="0" step=".01"/>
+=======
+    <input type="number" id="price" name="price" value=""/>
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
     <p style="margin: 0">In stock</p>
     <input type="radio" id="in_stock_yes" name="stock" value="in_stock"/>
     <label for="in_stock_yes">YES</label>
@@ -45,10 +59,16 @@
     <br>
     <input type="hidden" name="command" value="add_new_item"/>
     <input type="submit" name="add_item" value="Add new item"/>
+<<<<<<< HEAD
     <a href="${pageContext.request.contextPath}/controller?command=go_to_admin_page">Return to admin page</a>
 </form>
 </body>
 <footer style="padding-top: 200px">
     <c:out value="© M.Belyuk,2022"/>
 </footer>
+=======
+
+</form>
+</body>
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 </html>

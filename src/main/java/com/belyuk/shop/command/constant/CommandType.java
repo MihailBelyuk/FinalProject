@@ -1,8 +1,13 @@
 package com.belyuk.shop.command.constant;
 
 import com.belyuk.shop.command.Command;
+<<<<<<< HEAD
 import com.belyuk.shop.command.impl.admin.*;
 import com.belyuk.shop.command.impl.common.*;
+=======
+import com.belyuk.shop.command.impl.*;
+import com.belyuk.shop.command.impl.admin.*;
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 import com.belyuk.shop.command.impl.navigation.*;
 
 public enum CommandType {
@@ -20,12 +25,16 @@ public enum CommandType {
   CHANGE_LOCALE(new ChangeLocalizationCommand()),
   SHOW_ALL_ITEMS(new ShowAllItemsCommand()),
   ADD_NEW_ITEM(new AddNewItemCommand()),
+<<<<<<< HEAD
   GO_TO_ADD_ITEM_PAGE(new GoToAddItemPageCommand()),
   GO_TO_LOGGED_USER_PAGE(new GoToLoggedUserPageCommand()),
   GO_TO_ADMIN_PAGE(new GoToAdminPageCommand()),
   SEARCH_ITEM(new SearchItemCommand()),
   ADD_TO_CART(new AddToCartCommand()),
   GO_TO_CART(new GoToCartCommand());
+=======
+  GO_TO_ADD_ITEM_PAGE(new GoToAddItemPageCommand());
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
   Command command;
 
   CommandType(Command command) {
