@@ -1,20 +1,20 @@
 package com.belyuk.shop.command.impl;
 
-import com.belyuk.shop.command.constant.AttributeParameterName;
 import com.belyuk.shop.command.Command;
-import com.belyuk.shop.command.constant.PagePath;
 import com.belyuk.shop.command.Router;
+import com.belyuk.shop.command.constant.AttributeParameterName;
+import com.belyuk.shop.command.constant.PagePath;
+import com.belyuk.shop.entity.service.impl.UserServiceImpl;
 import com.belyuk.shop.exception.CommandException;
 import com.belyuk.shop.exception.ServiceException;
-import com.belyuk.shop.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 import static com.belyuk.shop.command.Router.RouterType.FORWARD;
 import static com.belyuk.shop.command.Router.RouterType.REDIRECT;
+import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 
 public class RegisterUserCommand implements Command {
   private static final Logger logger = LogManager.getLogger();

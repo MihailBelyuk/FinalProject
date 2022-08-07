@@ -31,17 +31,11 @@
 </form>
 <form action="${pageContext.request.contextPath}/controller">
     <input type="hidden" name="command" value="go_to_add_item_page"/>
-<<<<<<< HEAD
     <input type="submit" value="${add_item}">
 </form>
 <footer style="padding-top: 600px">
     <c:import url="footer.jsp"/>
 </footer>
-=======
-    <input type="submit" value="Add item">
-</form>
-
->>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 
 </body>
 </html>

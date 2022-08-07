@@ -2,7 +2,6 @@ package com.belyuk.shop.command.impl.admin;
 
 import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.Router;
-<<<<<<< HEAD
 import com.belyuk.shop.entity.Item;
 import com.belyuk.shop.entity.service.impl.ItemServiceImpl;
 import com.belyuk.shop.exception.CommandException;
@@ -37,18 +36,4 @@ public class ShowAllItemsCommand implements Command {
     }
     return new Router(ITEMS_PAGE, REDIRECT);
   }
-=======
-import com.belyuk.shop.exception.CommandException;
-import jakarta.servlet.http.HttpServletRequest;
-
-import static com.belyuk.shop.command.constant.PagePath.*;
-import static com.belyuk.shop.command.Router.RouterType.*;
-
-public class ShowAllItemsCommand implements Command {
-    @Override
-    public Router execute(HttpServletRequest request) throws CommandException {
-
-        return new Router(ITEMS_PAGE,REDIRECT);
-    }
->>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 }
