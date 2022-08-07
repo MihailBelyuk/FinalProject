@@ -1,0 +1,10 @@
+body table tbody tr td img{
+    width: 150px;
+    height: 150px;
+}
+
+.item_table {
+    background-color: rgba(112,95,8,0.75);
+    margin-left: 300px;
+    margin-top: 50px;
+}

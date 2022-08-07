@@ -11,25 +11,23 @@
 <fmt:message key="login.password" var="password"/>
 <fmt:message key="login.login" var="login"/>
 <fmt:message key="login.register" var="register"/>
-<fmt:message key="login.forgot_password" var="forgot_password"/>
 
 <html>
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
-
-    <c:import url="main.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <c:import url="header.jsp"/>
 </head>
 <body>
 <div class="pop_login">
     <div class="sign_in_msg">${greeting}</div>
     <div class="login_register_block">
-        <form action="${pageContext.request.contextPath}/controller">
+        <form action="${pageContext.request.contextPath}/controller" method="post">
             <input type="hidden" name="command" value="login"/>
             ${login_msg.toUpperCase()}
             ${invalid_input_message}
             <div class="login_password_input">
-
                 <input type="text" placeholder="${e_mail}" name="e_mail" value=""/>
                 <br>
                 <input type="password" placeholder="${password}" name="password" value=""/>
@@ -40,10 +38,11 @@
         <form action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="open_registry_page"/>
             <input type="submit" name="register_page" value="${register}"/>
-
-            <a href="">${forgot_password}</a>
         </form>
     </div>
 </div>
 </body>
+<footer style="margin-top: 300px">
+    <c:import url="footer.jsp"/>
+</footer>
 </html>

@@ -2,51 +2,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <html>
 <head>
     <title>All items</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/items.css">
+    <c:import url="header.jsp"/>
 </head>
 <body>
-<div id="content">
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Last name</th>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>Phone number</th>
-            <th>Edit</th>
+<table>
+    <thead>
+    <tr style="border-color: #2a2a2a;border-width: 1px; background-color: rgba(240,227,221,0.73)">
+        <th style="width: 100px">ID</th>
+        <th style="width: 100px">Category</th>
+        <th style="width: 100px">Brand</th>
+        <th style="width: 100px">Picture</th>
+        <th style="width: 100px">Description</th>
+        <th style="width: 100px">Price</th>
+        <th style="width: 100px">In stock</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="item" items="${all_items}">
+        <tr style="border-color: #2a2a2a;border-width: 1px; background-color: rgba(240,227,221,0.73)">
+            <td style="position: center"><c:out value="${item.id}"/></td>
+            <td><c:out value="${item.itemCategory}"/></td>
+            <td><c:out value="${item.brandName}"/></td>
+            <td><img src="${item.encodedImage}" alt=""></td>
+            <td><c:out value="${item.name}"/></td>
+            <td><c:out value="${item.price}"/></td>
+            <td><c:out value="${item.inStock}"/></td>
         </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${all_users}">
-            <tr>
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.userRole}"/></td>
-                <td><c:out value="${user.lastName}"/></td>
-                <td><c:out value="${user.name}"/></td>
-                <td><c:out value="${user.eMail}"/></td>
-                <td><c:out value="${user.phoneNumber}"/></td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/controller">
-                        <input type="hidden" name="command" value="go_to_user_update_page"/>
-                        <input type="hidden" name="userId" value="<c:out value="${user.id}"/>">
-                        <input type="submit" name="edit" value="Edit"/>
-                    </form>
-                </td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/controller">
-                        <input type="hidden" name="userId" value="<c:out value="${user.id}"/>">
-                        <input type="hidden" name="command" value="delete_user"/>
-                        <input type="submit" name="delete" value="Delete" id="delete_button"/>
-                    </form>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
+    </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>

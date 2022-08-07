@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/** The type Controller. Extends HttpServlet and processes the commands. */
 @WebServlet(
     name = "Controller",
     urlPatterns = {"/controller", "*.do"})
@@ -44,9 +45,11 @@ public class Controller extends HttpServlet {
 
   public void processRequest(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+<<<<<<< HEAD
+=======
     //    response.setContentType("text/html");
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
     String commandName = request.getParameter(AttributeParameterName.COMMAND);
-
     Router router;
     try {
       Command command = CommandType.define(commandName);
@@ -58,7 +61,6 @@ public class Controller extends HttpServlet {
           break;
         case REDIRECT:
           response.sendRedirect(router.getPagePath());
-
           break;
         default:
           logger.log(Level.ERROR, "Incorrect router type " + router.getRouterType());

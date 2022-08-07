@@ -1,12 +1,11 @@
-package com.belyuk.shop.service.impl;
+package com.belyuk.shop.entity.service.impl;
 
 import com.belyuk.shop.dao.impl.UserDaoImpl;
 import com.belyuk.shop.entity.User;
 import com.belyuk.shop.entity.UserRole;
+import com.belyuk.shop.entity.service.UserService;
 import com.belyuk.shop.exception.DaoException;
 import com.belyuk.shop.exception.ServiceException;
-import com.belyuk.shop.service.UserService;
-import com.belyuk.shop.service.validator.impl.UserValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,10 +13,14 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
   private static final UserDaoImpl userDao = UserDaoImpl.getInstance();
   private static final UserServiceImpl userService = new UserServiceImpl();
   private static Logger logger = LogManager.getLogger();
+<<<<<<< HEAD:src/main/java/com/belyuk/shop/entity/service/impl/UserServiceImpl.java
+=======
 
+>>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2:src/main/java/com/belyuk/shop/service/impl/UserServiceImpl.java
 
   private UserServiceImpl() {}
 
@@ -31,20 +34,14 @@ public class UserServiceImpl implements UserService {
       logger.log(Level.ERROR, "Provided login or password is null!");
       throw new ServiceException("Provided login or password is null!");
     }
-    boolean validLogin = UserValidatorImpl.getInstance().validateLogin(login);
-    boolean validPassword = UserValidatorImpl.getInstance().validatePassword(password);
-    if (validLogin && validPassword) {
-      try {
-        userDao.authenticate(login, password);
-      } catch (DaoException e) {
-        logger.log(
-            Level.ERROR, "User login and password do not match DB stored login and password.", e);
-        throw new ServiceException(
-            "User login and password do not match DB stored login and password.", e);
-      }
-      return true;
+    try {
+      return userDao.authenticate(login, password);
+    } catch (DaoException e) {
+      logger.log(
+          Level.ERROR, "User login and password do not match DB stored login and password.", e);
+      throw new ServiceException(
+          "User login and password do not match DB stored login and password.", e);
     }
-    return false;
   }
 
   @Override
@@ -144,15 +141,33 @@ public class UserServiceImpl implements UserService {
   @Override
   public User findUserById(int id) throws ServiceException {
     if (id == 0) {
-      throw new ServiceException("User id can't be '0'");
+      logger.log(Level.ERROR, "Find user by id service failed, because id is '0'");
+      throw new ServiceException("Find user by id service failed, because id is '0'");
     }
     User user;
     try {
-      user = userDao.find(id);
+      user = userDao.findById(id);
     } catch (DaoException e) {
       logger.log(Level.ERROR, "Find user by ID service failed", e);
       throw new ServiceException("Find user by ID service failed", e);
     }
     return user;
+  }
+
+  @Override
+  public boolean checkByEmailIfUserExist(String email) throws ServiceException {
+    if (email == null) {
+      logger.log(
+          Level.ERROR,
+          "Check by e-mail if user exist service failed, because provided e-mail is null");
+      throw new ServiceException(
+          "Check by e-mail if user exist service failed, because provided e-mail is null");
+    }
+    try {
+      return userDao.checkIfEmailExists(email);
+    } catch (DaoException e) {
+      logger.log(Level.ERROR, "Find user by email service failed.", e);
+      throw new ServiceException("Find user by email service failed.", e);
+    }
   }
 }

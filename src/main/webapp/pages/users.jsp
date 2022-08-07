@@ -5,23 +5,27 @@
 <html>
 <head>
     <title>All users</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <c:import url="header.jsp"/>
 </head>
 <body>
 <div id="content">
     <table>
         <thead>
-        <tr>
+        <tr style="border-color: #2a2a2a;border-width: 1px; background-color: rgba(240,227,221,0.73)">
             <th>ID</th>
+            <th>Role</th>
             <th>Last name</th>
             <th>Name</th>
             <th>E-mail</th>
             <th>Phone number</th>
-            <th>Edit</th>
+            <th>Edit user</th>
+            <th>Delete user</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="user" items="${all_users}">
-            <tr>
+            <tr style="border-color: #2a2a2a;border-width: 1px; background-color: rgba(240,227,221,0.73)">
                 <td><c:out value="${user.id}"/></td>
                 <td><c:out value="${user.userRole}"/></td>
                 <td><c:out value="${user.lastName}"/></td>
