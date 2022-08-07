@@ -14,11 +14,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import static com.belyuk.shop.command.constant.PagePath.USERS_PAGE;
 import static com.belyuk.shop.command.constant.AttributeParameterName.*;
->>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
 import static com.belyuk.shop.command.Router.RouterType.REDIRECT;
 import static com.belyuk.shop.command.constant.AttributeParameterName.ALL_USERS_ATTR;
 import static com.belyuk.shop.command.constant.AttributeParameterName.CURRENT_PAGE_ATTR;
@@ -27,11 +24,8 @@ import static com.belyuk.shop.command.constant.PagePath.USERS_PAGE;
 public class ShowAllUsersCommand implements Command {
 
   public static final Logger logger = LogManager.getLogger();
-<<<<<<< HEAD
   private final UserServiceImpl userService = UserServiceImpl.getUserService();
-=======
-  private UserServiceImpl userService = UserServiceImpl.getUserService();
->>>>>>> 07c9f1c70dc4b005c9f0e708c0d7104fc4b3aea2
+
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {
