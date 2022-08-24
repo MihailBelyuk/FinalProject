@@ -4,11 +4,10 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>User update</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
-    <c:import url="header.jsp"/>
-</head>
-<body>
+    </head>
+<body style="background-color: rgba(106,155,55,0.5)">
 <form action="${pageContext.request.contextPath}/controller">
     <label for="role">User Role</label>
     <select name="role" id="role" >
@@ -29,4 +28,7 @@
     <input type="submit" name="update" value="Update User">
 </form>
 </body>
+<footer>
+    <c:import url="footer.jsp"/>
+</footer>
 </html>

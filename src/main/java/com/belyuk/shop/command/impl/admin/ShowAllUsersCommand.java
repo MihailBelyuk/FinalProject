@@ -14,18 +14,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-import static com.belyuk.shop.command.constant.PagePath.USERS_PAGE;
-import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 import static com.belyuk.shop.command.Router.RouterType.REDIRECT;
 import static com.belyuk.shop.command.constant.AttributeParameterName.ALL_USERS_ATTR;
 import static com.belyuk.shop.command.constant.AttributeParameterName.CURRENT_PAGE_ATTR;
 import static com.belyuk.shop.command.constant.PagePath.USERS_PAGE;
 
 public class ShowAllUsersCommand implements Command {
-
-  public static final Logger logger = LogManager.getLogger();
+  private static final Logger logger = LogManager.getLogger();
   private final UserServiceImpl userService = UserServiceImpl.getUserService();
-
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {

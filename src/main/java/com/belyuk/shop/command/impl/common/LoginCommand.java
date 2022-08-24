@@ -2,7 +2,6 @@ package com.belyuk.shop.command.impl.common;
 
 import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.Router;
-import com.belyuk.shop.command.constant.AttributeParameterName;
 import com.belyuk.shop.entity.User;
 import com.belyuk.shop.entity.UserRole;
 import com.belyuk.shop.entity.service.impl.UserServiceImpl;
@@ -22,16 +21,14 @@ import static com.belyuk.shop.command.constant.Message.INCORRECT_LOGIN_OR_PASSWO
 import static com.belyuk.shop.command.constant.PagePath.*;
 
 public class LoginCommand implements Command {
-
-  public static final Logger logger = LogManager.getLogger();
-
+  private static final Logger logger = LogManager.getLogger();
   private static final String LOGOUT = "Logout";
   private final UserServiceImpl userService = UserServiceImpl.getUserService();
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {
-    String eMail = request.getParameter(AttributeParameterName.EMAIL_ATTR);
-    String password = request.getParameter(AttributeParameterName.PASSWORD_ATTR);
+    String eMail = request.getParameter(EMAIL_ATTR);
+    String password = request.getParameter(PASSWORD_ATTR);
     String page = null;
     HttpSession session = request.getSession();
     try {
@@ -45,14 +42,6 @@ public class LoginCommand implements Command {
               case CLIENT -> CLIENT_PAGE;
             };
             session.setAttribute(LOGGED_USER_PAGE_ATTR, page);
-            switch (status) {
-              case ADMIN:
-                page = ADMIN_PAGE;
-                break;
-              case CLIENT:
-                page = MAIN_PAGE;
-                break;
-            }
           }
         }
         session.setAttribute(LOGGED_USER_ATTR, eMail);
@@ -60,7 +49,6 @@ public class LoginCommand implements Command {
       } else {
         page = LOGIN_PAGE;
         session.setAttribute(LOGIN_MSG_ATTR, INCORRECT_LOGIN_OR_PASSWORD_MSG);
-        session.setAttribute("login_msg", "Incorrect login or password");
       }
     } catch (ServiceException e) {
       logger.log(Level.WARN, "Authentication failed.", e);

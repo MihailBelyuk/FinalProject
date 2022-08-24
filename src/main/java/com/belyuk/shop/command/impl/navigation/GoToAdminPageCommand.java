@@ -6,10 +6,15 @@ import com.belyuk.shop.command.constant.PagePath;
 import com.belyuk.shop.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 
+import static com.belyuk.shop.command.Router.RouterType.FORWARD;
+import static com.belyuk.shop.command.Router.RouterType.REDIRECT;
+import static com.belyuk.shop.command.constant.AttributeParameterName.CURRENT_PAGE_ATTR;
+import static com.belyuk.shop.command.constant.PagePath.ADMIN_PAGE;
+
 public class GoToAdminPageCommand implements Command {
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {
-    return new Router(PagePath.ADMIN_PAGE, Router.RouterType.REDIRECT);
+        return new Router(ADMIN_PAGE,FORWARD);
   }
 }

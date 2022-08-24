@@ -15,7 +15,7 @@ body .sign_in_msg {
     font-size: 50px;
     text-align: center;
     color: darkslategrey;
-    padding-left: 350px;
+    padding-left: 320px;
     padding-top: 100px;
     width: 1000px;
     height: fit-content;
@@ -23,7 +23,6 @@ body .sign_in_msg {
 
 .login_register_block {
     text-align: center;
-
 }
 
 .login_button {

@@ -32,45 +32,37 @@ public enum AttributeParameterName {
   // item
   public static final String ALL_ITEMS_ATTR = "all_items";
   public static final String FIELDS_MUST_BE_FILLED_ATTR = "fields_must_be_filled";
-  public static final String ITEMS_IN_CART_ATTR = "items_in_cart";
   public static final String SEARCH_ITEMS_ATTR = "search_items";
   public static final String NO_MATCHING_ITEMS_ATTR = "no_matching_items";
   public static final String OUT_OF_STOCK_ATTR = "out_of_stock";
+  public static final String ITEM_ID_ATTR = "item_id";
+  public static final String ITEM_CATEGORY_ATTR = "item_category";
+  public static final String BRAND_ATTR = "brand";
+  public static final String PICTURE_ATTR = "picture";
+  public static final String ITEM_NAME_ATTR = "item_name";
+  public static final String DESCRIPTION_ATTR = "description";
+  public static final String PRICE_ATTR = "price";
+  public static final String IN_STOCK_ATTR = "in_stock";
+
+  // cart
+  public static final String CART_ATTR = "cart";
+  public static final String EMPTY_CART_ATTR = "empty_cart";
+  public static final String ITEMS_IN_CART_ATTR = "items_in_cart";
+  public static final String TOTAL_PRICE_ATTR="total_price";
 
   // common
   public static final String CURRENT_PAGE_ATTR = "current_page";
   public static final String LOCALIZATION_ATTR = "localization";
 
-  // cart
-  public static final String CART_ATTR = "cart";
-
   // parameters
   // user
-
-  public static final String USER_ID_ATTRIBUTE = "user_id";
-  public static final String USER_ROLE_ATTRIBUTE = "user_role";
-  public static final String LAST_NAME_ATTRIBUTE = "last_name";
-  public static final String NAME_ATTRIBUTE = "name";
-  public static final String PASSWORD_ATTRIBUTE = "password";
-  public static final String EMAIL_ATTRIBUTE = "e_mail";
-  public static final String PHONE_NUMBER_ATTRIBUTE = "phone_number";
-  public static final String CURRENT_PAGE = "current_page";
-  public static final String LOCALIZATION = "localization";
-  public static final String ALL_USERS = "all_users";
-  // parameters
-  // user
-
-  public static final String COMMAND = "command";
-  public static final String RU_PARAMETER = "ru";
-  public static final String EN_PARAMETER = "en";
-  public static final String LOCALE_PARAM = "locale_param";
-  public static final String USER_ID_PARAM = "userId";
-  public static final String USER_ROLE_PARAM = "role";
-  public static final String LAST_NAME_PARAM = "last_name";
-  public static final String NAME_PARAM = "name";
-  public static final String PASSWORD_PARAM = "password";
-  public static final String EMAIL_PARAM = "e_mail";
-  public static final String PHONE_NUMBER_PARAM = "phone_number";
+  public static final String LAST_NAME = "last_name";
+  public static final String NAME = "name";
+  public static final String PASSWORD = "password";
+  public static final String EMAIL = "e_mail";
+  public static final String PHONE_NUMBER = "phone_number";
+  public static final String USER_ROLE = "user_role";
+  public static final String USER_ID = "user_id";
 
   // item
   public static final String ITEM_CATEGORY = "item_category";
@@ -81,8 +73,11 @@ public enum AttributeParameterName {
   public static final String PICTURE = "picture";
   public static final String PRICE = "price";
   public static final String SEARCH = "search";
+  public static final String ITEM_ID = "item_id";
 
-  // cart
-  public static final String ITEMS_IN_CART = "items_in_cart";
-  public static final String EMPTY_CART = "empty_cart";
+  // common
+  public static final String COMMAND = "command";
+  public static final String RU_PARAMETER = "ru";
+  public static final String EN_PARAMETER = "en";
+  public static final String LOCALE = "locale_param";
 }

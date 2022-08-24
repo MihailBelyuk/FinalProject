@@ -5,7 +5,5 @@ public enum ItemCategory {
   REELS,
   LURES,
   LINE,
-  HOOKS,
-  NONE
-
+  HOOKS
 }

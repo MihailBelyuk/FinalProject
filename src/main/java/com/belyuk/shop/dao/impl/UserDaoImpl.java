@@ -1,6 +1,5 @@
 package com.belyuk.shop.dao.impl;
 
-import com.belyuk.shop.dao.ColumnName;
 import com.belyuk.shop.dao.UserDao;
 import com.belyuk.shop.entity.User;
 import com.belyuk.shop.entity.UserRole;
@@ -14,11 +13,11 @@ import org.apache.logging.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.belyuk.shop.dao.ColumnName.*;
 
 public class UserDaoImpl implements UserDao {
-
   private static final Logger logger = LogManager.getLogger();
   private static final String SELECT_LOGIN_PASSWORD =
       "SELECT password, user_role FROM users WHERE e_mail =?";
@@ -31,10 +30,9 @@ public class UserDaoImpl implements UserDao {
   private static final String FIND_USER_BY_ID =
       "SELECT user_role,last_name, name, password, e_mail, phone_number FROM users WHERE id =?";
   private static final String FIND_USER_BY_E_MAIL = "SELECT * FROM users WHERE e_mail=?";
-
-  private static UserDaoImpl instance = new UserDaoImpl();
-  private ConnectionPool connectionPool = ConnectionPool.getInstance();
-  private Utility utility = Utility.getInstance();
+  private static final UserDaoImpl instance = new UserDaoImpl();
+  private final ConnectionPool connectionPool = ConnectionPool.getInstance();
+  private final Utility utility = Utility.getInstance();
 
   private UserDaoImpl() {}
 
@@ -66,16 +64,16 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public boolean delete(User user) throws DaoException {
-    if (user == null) {
+  public boolean delete(int id) throws DaoException {
+    if (id == 0) {
       logger.log(
-          Level.ERROR, "Unable to delete user information from the DB, because user is null.");
+          Level.ERROR, "Unable to delete user information from the DB, because user id is 0.");
       throw new DaoException(
-          "Unable to delete user information from the DB, because user is null.");
+          "Unable to delete user information from the DB, because user id is 0.");
     }
     try (Connection connection = connectionPool.getConnection()) {
       PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER);
-      preparedStatement.setInt(1, user.getId());
+      preparedStatement.setInt(1, id);
       return preparedStatement.execute();
     } catch (SQLException e) {
       logger.log(Level.ERROR, "Failed to delete user from DB.", e);
@@ -150,7 +148,7 @@ public class UserDaoImpl implements UserDao {
       preparedStatement.setString(1, login);
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.next()) {
-        String passFromDb = resultSet.getString(ColumnName.PASSWORD);
+        String passFromDb = resultSet.getString(PASSWORD);
         match = hashPassword.equals(passFromDb);
       }
     } catch (SQLException e) {
@@ -161,10 +159,10 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public User findById(int id) throws DaoException {
+  public Optional<User> findById(int id) throws DaoException {
     if (id == 0) {
-      logger.log(Level.ERROR, "Provided user id is '0'");
-      throw new DaoException("Provided user id is '0'");
+      logger.log(Level.ERROR, "Failed to find user by id, because id is 0.");
+      throw new DaoException("Failed to find user by id, because id is 0.");
     }
     User user = null;
     try (Connection connection = connectionPool.getConnection()) {
@@ -184,7 +182,7 @@ public class UserDaoImpl implements UserDao {
       logger.log(Level.ERROR, "Unable to find user with " + id, e);
       throw new DaoException("Unable to find user by " + id, e);
     }
-    return user;
+    return Optional.ofNullable(user);
   }
 
   @Override

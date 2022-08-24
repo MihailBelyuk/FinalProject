@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
@@ -62,7 +63,6 @@ public class UserServiceImpl implements UserService {
     boolean addUser;
     try {
       addUser = userDao.add(user);
-
     } catch (DaoException e) {
       logger.log(Level.ERROR, "Failed to register user.", e);
       throw new ServiceException("Failed to register user.", e);
@@ -82,14 +82,14 @@ public class UserServiceImpl implements UserService {
     return list;
   }
 
-  public boolean deleteUser(User user) throws ServiceException {
-    if (user == null) {
-      logger.log(Level.ERROR, "Unable to delete user, because user provided user is null.");
-      throw new ServiceException("Unable to delete user, because user provided user is null.");
+  public boolean deleteUser(int id) throws ServiceException {
+    if (id == 0) {
+      logger.log(Level.ERROR, "Failed to delete user because user id is 0.");
+      throw new ServiceException("Failed to delete user because user id is 0.");
     }
     boolean deleteUser;
     try {
-      deleteUser = userDao.delete(user);
+      deleteUser = userDao.delete(id);
     } catch (DaoException e) {
       logger.log(Level.ERROR, "Delete user service failed", e);
       throw new ServiceException("Delete user service failed", e);
@@ -126,28 +126,30 @@ public class UserServiceImpl implements UserService {
     user.seteMail(eMail);
     user.setPhoneNumber(phoneNumber);
     try {
-      userDao.update(user);
+      if (userDao.update(user) == 0) {
+        return false;
+      }
     } catch (DaoException e) {
       logger.log(Level.ERROR, "Update user service failed", e);
       throw new ServiceException("Update user service failed", e);
     }
-    return false;
+    return true;
   }
 
   @Override
-  public User findUserById(int id) throws ServiceException {
+  public Optional<User> findUserById(int id) throws ServiceException {
     if (id == 0) {
       logger.log(Level.ERROR, "Find user by id service failed, because id is '0'");
       throw new ServiceException("Find user by id service failed, because id is '0'");
     }
     User user;
     try {
-      user = userDao.findById(id);
+      user = userDao.findById(id).orElseThrow(() -> new ServiceException("User is null."));
     } catch (DaoException e) {
       logger.log(Level.ERROR, "Find user by ID service failed", e);
       throw new ServiceException("Find user by ID service failed", e);
     }
-    return user;
+    return Optional.ofNullable(user);
   }
 
   @Override

@@ -4,7 +4,6 @@ import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.Router;
 import com.belyuk.shop.entity.Cart;
 import com.belyuk.shop.entity.Item;
-import com.belyuk.shop.entity.service.impl.ItemServiceImpl;
 import com.belyuk.shop.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -17,8 +16,6 @@ import static com.belyuk.shop.command.constant.Message.OUT_OF_STOCK_MSG;
 import static com.belyuk.shop.command.constant.PagePath.MAIN_PAGE;
 
 public class AddToCartCommand implements Command {
-
-  private ItemServiceImpl itemService = ItemServiceImpl.getInstance();
 
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {

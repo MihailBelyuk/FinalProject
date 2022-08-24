@@ -10,21 +10,21 @@ import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 
 public class ChangeLocalizationCommand implements Command {
 
+  enum Localization {
+    ;
+    public static final String RU = "ru_RU";
+    public static final String EN = "en_US";
+  }
+
   @Override
   public Router execute(HttpServletRequest request) throws CommandException {
     HttpSession session = request.getSession();
-    String locale = request.getParameter(LOCALE_PARAM);
+    String locale = request.getParameter(LOCALE);
     String currentPage = String.valueOf(session.getAttribute(CURRENT_PAGE_ATTR));
     switch (locale) {
       case RU_PARAMETER -> session.setAttribute(LOCALIZATION_ATTR, Localization.RU);
       case EN_PARAMETER -> session.setAttribute(LOCALIZATION_ATTR, Localization.EN);
     }
     return new Router(currentPage, Router.RouterType.FORWARD);
-  }
-
-  enum Localization {
-    ;
-    public static final String RU = "ru_RU";
-    public static final String EN = "en_US";
   }
 }

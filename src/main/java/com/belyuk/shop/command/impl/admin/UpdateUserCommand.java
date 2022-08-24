@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 
 public class UpdateUserCommand implements Command {
-
   private static final Logger logger = LogManager.getLogger();
   private final UserServiceImpl userService = UserServiceImpl.getUserService();
 
@@ -23,12 +22,12 @@ public class UpdateUserCommand implements Command {
   public Router execute(HttpServletRequest request) throws CommandException {
     HttpSession session = request.getSession();
     int id = Integer.parseInt((String) session.getAttribute(USER_ID_ATTR));
-    UserRole userRole = UserRole.valueOf(request.getParameter(USER_ROLE_PARAM).toUpperCase());
-    String lastName = request.getParameter(LAST_NAME_PARAM);
-    String name = request.getParameter(NAME_PARAM);
-    String password = request.getParameter(PASSWORD_PARAM);
-    String eMail = request.getParameter(EMAIL_PARAM);
-    String phoneNumber = request.getParameter(PHONE_NUMBER_PARAM);
+    UserRole userRole = UserRole.valueOf(request.getParameter(USER_ROLE).toUpperCase());
+    String lastName = request.getParameter(LAST_NAME);
+    String name = request.getParameter(NAME);
+    String password = request.getParameter(PASSWORD);
+    String eMail = request.getParameter(EMAIL);
+    String phoneNumber = request.getParameter(PHONE_NUMBER);
     try {
       userService.updateUser(id, userRole, lastName, name, password, eMail, phoneNumber);
       return new ShowAllUsersCommand().execute(request);

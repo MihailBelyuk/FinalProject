@@ -1,6 +1,7 @@
-body {
-    background-image: url("pictures/fishing2.jpg");
+.body {
+    background-color: rgba(106,155,55,0.2);
 }
+
 body .greeting_message {
     font-size: 50px;
     font-family: SansSerif, serif;

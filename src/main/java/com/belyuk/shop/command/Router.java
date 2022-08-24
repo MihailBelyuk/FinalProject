@@ -1,7 +1,6 @@
 package com.belyuk.shop.command;
 
 public class Router {
-
   private String pagePath;
   private RouterType routerType;
 
@@ -10,8 +9,9 @@ public class Router {
     this.routerType = routerType;
   }
 
-  public Router(String pagePath) {
-    this.pagePath = pagePath;
+  public enum RouterType {
+    FORWARD,
+    REDIRECT
   }
 
   public Router() {}
@@ -26,10 +26,5 @@ public class Router {
 
   public RouterType getRouterType() {
     return routerType;
-  }
-
-  public enum RouterType {
-    FORWARD,
-    REDIRECT
   }
 }

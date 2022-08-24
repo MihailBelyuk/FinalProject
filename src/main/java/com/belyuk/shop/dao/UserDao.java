@@ -3,6 +3,8 @@ package com.belyuk.shop.dao;
 import com.belyuk.shop.entity.User;
 import com.belyuk.shop.exception.DaoException;
 
+import java.util.Optional;
+
 /** The interface User dao. */
 public interface UserDao extends BaseDao<User> {
   /**
@@ -22,5 +24,12 @@ public interface UserDao extends BaseDao<User> {
    * @throws DaoException the dao exception
    */
   boolean checkIfEmailExists(String email) throws DaoException;
-  User findById(int id) throws DaoException;
+  /**
+   * Find user by id.
+   *
+   * @param id the user id
+   * @return the User
+   * @throws DaoException the dao exception
+   */
+  Optional<User> findById(int id) throws DaoException;
 }

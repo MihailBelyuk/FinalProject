@@ -1,12 +1,12 @@
 package com.belyuk.shop.entity.service;
 
-import com.belyuk.shop.entity.Brand;
 import com.belyuk.shop.entity.Item;
 import com.belyuk.shop.entity.ItemCategory;
 import com.belyuk.shop.exception.ServiceException;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 /** The interface Item service. */
 public interface ItemService {
@@ -44,19 +44,21 @@ public interface ItemService {
   /**
    * Deletes the item from the database boolean.
    *
-   * @param item the item
+   * @param id the item id.
    * @return the boolean
    * @throws ServiceException the service exception
    */
-  boolean deleteItem(Item item) throws ServiceException;
+  boolean deleteItem(int id) throws ServiceException;
 
   /**
    * Updates item information in the database boolean.
    *
    * @param id the id
-   * @param name the name
-   * @param brandName the brand name
    * @param itemCategory the item category
+   * @param brandName the brand name
+   * @param picture the picture
+   * @param name the name
+   * @param description the description
    * @param price the price
    * @param inStock the in stock
    * @return the boolean
@@ -64,9 +66,11 @@ public interface ItemService {
    */
   boolean updateItem(
       int id,
-      String name,
-      Brand brandName,
       ItemCategory itemCategory,
+      String brandName,
+      byte[] picture,
+      String name,
+      String description,
       BigDecimal price,
       boolean inStock)
       throws ServiceException;
@@ -78,4 +82,12 @@ public interface ItemService {
    * @throws ServiceException the service exception
    */
   List<Item> findItemByName(String name) throws ServiceException;
+  /**
+   * Find item by id item.
+   *
+   * @param id the item id
+   * @return the item
+   * @throws ServiceException the service exception
+   */
+  Optional<Item> findItemById(int id) throws ServiceException;
 }

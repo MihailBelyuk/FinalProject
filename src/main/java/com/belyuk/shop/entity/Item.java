@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class Item extends AbstractEntity {
-
   @Serial private static final long serialVersionUID = 1L;
   private ItemCategory itemCategory;
   private String brandName;
@@ -20,8 +19,23 @@ public class Item extends AbstractEntity {
     super(id);
   }
 
-  public Item() {
-    super();
+  public Item(
+      int id,
+      ItemCategory itemCategory,
+      String brandName,
+      byte[] imageBytes,
+      String name,
+      String description,
+      BigDecimal price,
+      boolean inStock) {
+    super(id);
+    this.itemCategory = itemCategory;
+    this.brandName = brandName;
+    this.imageBytes = imageBytes;
+    this.name = name;
+    this.description = description;
+    this.price = price;
+    this.inStock = inStock;
   }
 
   public Item(
@@ -40,6 +54,8 @@ public class Item extends AbstractEntity {
     this.price = price;
     this.inStock = inStock;
   }
+
+  public Item() {}
 
   public ItemCategory getItemCategory() {
     return itemCategory;

@@ -11,10 +11,10 @@ import java.util.concurrent.Executor;
 
 public class ProxyConnection implements Connection {
   private static final Logger logger = LogManager.getLogger();
-  private Connection connection;
+  private final Connection connection;
 
   ProxyConnection(Connection connection) {
-    this.connection=connection;
+    this.connection = connection;
   }
 
   @Override
@@ -29,6 +29,7 @@ public class ProxyConnection implements Connection {
       logger.log(Level.ERROR, "Failed to close connection.", e);
     }
   }
+
   @Override
   public Statement createStatement() throws SQLException {
     return connection.createStatement();
@@ -68,7 +69,6 @@ public class ProxyConnection implements Connection {
   public void rollback() throws SQLException {
     connection.rollback();
   }
-
 
   @Override
   public boolean isClosed() throws SQLException {
@@ -294,15 +294,15 @@ public class ProxyConnection implements Connection {
     return connection.getNetworkTimeout();
   }
 
-//  @Override
-//  public void beginRequest() throws SQLException {
-//    connection.beginRequest();
-//  }
+  //  @Override
+  //  public void beginRequest() throws SQLException {
+  //    connection.beginRequest();
+  //  }
 
-//  @Override
-//  public void endRequest() throws SQLException {
-//    connection.endRequest();
-//  }
+  //  @Override
+  //  public void endRequest() throws SQLException {
+  //    connection.endRequest();
+  //  }
 
   @Override
   public <T> T unwrap(Class<T> iface) throws SQLException {

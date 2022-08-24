@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <c:import url="header.jsp"/>
 </head>
-<body>
-<div class="pop_register">
+<body style="background-color: rgba(106,155,55,0.5)">
+<div >
     <div class="fill_in_register_form_greeting">${greeting}</div>
 
-    <form action="${pageContext.request.contextPath}/controller" class="registration_form">
+    <form action="${pageContext.request.contextPath}/controller" class="registration_form" style="background-color: ivory;border-radius: 5px">
         <br>
         <label for="last_name" class="label">${last_name_label}</label>
         <br>
@@ -72,7 +72,7 @@
         <label for="phone" class="label">${phone_nummber_label}</label>
 
         <input type="text" id="phone" name="phone_number" value="${phone_number}" placeholder="+375 29 0000000"
-               class="field" pattern="^\+\d{2,3}\s\d{2,3}\s\d{7}"/>
+               class="field" pattern="^\+\d{2,3}\s\d{2,3}\s\d{7}" style="margin-bottom: 30px"/>
 
         <div class="message">
             <c:out value="${empty_phone_number}"/>
@@ -80,7 +80,7 @@
         </div>
 
         <input type="hidden" name="command" value="register"/>
-        <input type="submit" value="${register}" class="register_btn"/>
+        <input type="submit" value="${register}" class="register_btn" style="margin-bottom: 20px; border-radius: 5px; height: 50px"/>
         <br>
     </form>
 </div>

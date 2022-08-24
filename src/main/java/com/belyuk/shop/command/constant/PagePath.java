@@ -14,4 +14,5 @@ public enum PagePath {
   public static final String ADD_ITEM_PAGE = "pages/add_item.jsp";
   public static final String CLIENT_PAGE = "pages/client_page.jsp";
   public static final String CART_PAGE = "pages/cart.jsp";
+  public static final String ITEM_UPDATE_PAGE = "pages/item_update.jsp";
 }
