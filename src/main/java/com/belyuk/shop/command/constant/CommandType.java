@@ -3,9 +3,6 @@ package com.belyuk.shop.command.constant;
 import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.impl.admin.*;
 import com.belyuk.shop.command.impl.common.*;
-import com.belyuk.shop.command.impl.*;
-import com.belyuk.shop.command.impl.admin.*;
-import com.belyuk.shop.command.impl.common.RegisterUserCommand;
 import com.belyuk.shop.command.impl.navigation.*;
 
 public enum CommandType {
@@ -28,9 +25,12 @@ public enum CommandType {
   GO_TO_ADMIN_PAGE(new GoToAdminPageCommand()),
   SEARCH_ITEM(new SearchItemCommand()),
   ADD_TO_CART(new AddToCartCommand()),
-  GO_TO_CART(new GoToCartCommand());
+  GO_TO_CART(new GoToCartCommand()),
+  GO_TO_ITEM_UPDATE_PAGE(new GoToItemUpdatePageCommand()),
+  UPDATE_ITEM(new UpdateItemCommand()),
+  DELETE_ITEM(new DeleteItemCommand());
 
-  Command command;
+  final Command command;
 
   CommandType(Command command) {
     this.command = command;

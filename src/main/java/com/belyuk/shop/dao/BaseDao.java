@@ -4,6 +4,7 @@ import com.belyuk.shop.entity.AbstractEntity;
 import com.belyuk.shop.exception.DaoException;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The interface Base dao.
@@ -23,11 +24,11 @@ public interface BaseDao<T extends AbstractEntity> {
   /**
    * Delete boolean.
    *
-   * @param t the t
+   * @param id the id
    * @return the boolean
    * @throws DaoException the dao exception
    */
-  boolean delete(T t) throws DaoException;
+  boolean delete(int id) throws DaoException;
 
   /**
    * Select all list.
@@ -45,5 +46,12 @@ public interface BaseDao<T extends AbstractEntity> {
    * @throws DaoException the dao exception
    */
   int update(T t) throws DaoException;
-  T findById(int id) throws DaoException;
+  /**
+   * Find by id t.
+   *
+   * @param id the id
+   * @return the t
+   * @throws DaoException the dao exception
+   */
+  Optional<T> findById(int id) throws DaoException;
 }

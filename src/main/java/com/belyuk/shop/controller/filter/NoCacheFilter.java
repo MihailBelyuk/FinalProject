@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter()
+@WebFilter(
+        urlPatterns = {"/pages/admin.page"}
+)
 public class NoCacheFilter implements Filter {
 
   public void init(FilterConfig config) throws ServletException {}

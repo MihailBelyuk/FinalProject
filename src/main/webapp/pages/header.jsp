@@ -36,19 +36,19 @@
                     <a class="nav-link active" aria-current="page"
                        href="${pageContext.request.contextPath}/controller?command=go_to_main_page">${home}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="width: 100px">
                     <a class="nav-link" href="#">${about_us}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="width: 100px">
                     <a class="nav-link" href="#">${contacts}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="width: 100px">
                     <a class="nav-link" href="#">${payment}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="width: 100px">
                     <a class="nav-link" href="#">${shipping}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="width: 100px">
                     <a class="nav-link" href="#">${brands}</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -56,7 +56,7 @@
                        aria-expanded="false">
                         ${change_language}
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="width: 20px">
                         <li><a class="dropdown-item" href="#">
                             <form action="${pageContext.request.contextPath}/controller">
                                 <input type="hidden" name="command" value="change_locale">
@@ -88,10 +88,19 @@
                 <li class="nav-item" style="margin-top: 10px; margin-left: 5px">
                     <a href="${pageContext.request.contextPath}/controller?command=go_to_logged_user_page">${logged_user}</a>
                 </li>
+                <li>
+                    <form action="${pageContext.request.contextPath}/controller" method="post">
+                        <input type="hidden" name="command" value="go_to_cart">
+                        <input type="image" name="cart" src="${pageContext.request.contextPath}/css/pictures/cart.png"
+                               style="height: 40px;margin-left: 200px;margin-right: 10px">
+
+                    </form>
+                </li>
             </ul>
-            <form class="d-flex" role="search" action="${pageContext.request.contextPath}/controller">
+            <form class="d-flex" role="search" action="${pageContext.request.contextPath}/controller" style="margin: 0">
                 <input type="hidden" name="command" value="search_item">
-                <input class="form-control me-2" type="search" placeholder="${search}" aria-label="Search" name="search">
+                <input class="form-control me-2" type="search" placeholder="${search}" aria-label="Search"
+                       name="search">
                 <button class="btn btn-outline-success" type="submit">${search}</button>
             </form>
         </div>

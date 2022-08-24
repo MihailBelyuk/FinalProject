@@ -17,18 +17,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
-
   private static final Logger logger = LogManager.getLogger();
   private static final String URL = "url";
   private static final String DRIVER = "driver";
   private static final String DB_PROPERTIES = "prop/db.properties";
+  private static final Properties dbProperties = new Properties();
+  private static final ReentrantLock lock = new ReentrantLock();
+  private static final AtomicBoolean isCreate = new AtomicBoolean(false);
   private static final int DEFAULT_POOL_SIZE = 8;
   private static ConnectionPool instance;
-  private static Properties dbProperties = new Properties();
-  private static ReentrantLock lock = new ReentrantLock();
-  private static AtomicBoolean isCreate = new AtomicBoolean(false);
-  private BlockingQueue<ProxyConnection> freeConnections;
-  private BlockingQueue<ProxyConnection> usedConnections;
+  private final BlockingQueue<ProxyConnection> freeConnections;
+  private final BlockingQueue<ProxyConnection> usedConnections;
 
   {
     freeConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
@@ -85,10 +84,9 @@ public class ConnectionPool {
   }
 
   public boolean releaseConnection(Connection connection) {
-    if (!(connection instanceof ProxyConnection)) {
+    if (!(connection instanceof ProxyConnection proxyConnection)) {
       return false;
     }
-    ProxyConnection proxyConnection = (ProxyConnection) connection;
     usedConnections.remove(proxyConnection);
     try {
       freeConnections.put(proxyConnection);

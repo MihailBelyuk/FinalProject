@@ -2,11 +2,13 @@ body .fill_in_register_form_greeting {
     font-size: 50px;
     text-align: center;
     color: darkslategrey;
-    margin-top: 0;
-    width: fit-content;
+    margin-top: 100px;
+    width:1450px;
+    position: center;
     height: fit-content;
     padding-top: 15px;
-    padding-left: 360px;
+    padding-bottom: 40px;
+
 }
 
 body .registration_form .message {
@@ -18,7 +20,7 @@ body .registration_form .message {
 body .registration_form {
     font-family: Arial;
     background-color: rgba(177, 158, 90, 0.7);
-    width: 400px;
+    width: 430px;
     height: fit-content;
     text-align: center;
     margin-left: 37%;
@@ -36,7 +38,7 @@ body .registration_form .field {
     border-bottom-width: 1px;
     border-bottom-color: darkslategrey;
     height: 30px;
-    width: 300px;
+    width: 350px;
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;

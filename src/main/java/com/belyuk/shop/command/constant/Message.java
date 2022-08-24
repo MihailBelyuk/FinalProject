@@ -18,5 +18,5 @@ public enum Message {
   public static final String USER_EXISTS_MSG = "User with such e-mail is already registered.";
   public static final String NO_MATCHING_ITEMS_MSG = "No items found to match search query.";
   public static final String EMPTY_CART_MSG = "There are no items in cart yet.";
-  public static final String OUT_OF_STOCK_MSG="Item is out of stock.";
+  public static final String OUT_OF_STOCK_MSG = "Item is out of stock.";
 }

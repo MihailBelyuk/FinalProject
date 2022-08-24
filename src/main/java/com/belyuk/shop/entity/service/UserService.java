@@ -5,6 +5,7 @@ import com.belyuk.shop.entity.UserRole;
 import com.belyuk.shop.exception.ServiceException;
 
 import java.util.List;
+import java.util.Optional;
 
 /** The interface User service. */
 public interface UserService {
@@ -44,11 +45,11 @@ public interface UserService {
   /**
    * Delete user boolean.
    *
-   * @param user the user
+   * @param id the user id
    * @return the boolean
    * @throws ServiceException the service exception
    */
-  boolean deleteUser(User user) throws ServiceException;
+  boolean deleteUser(int id) throws ServiceException;
 
   /**
    * Update user boolean.
@@ -80,7 +81,7 @@ public interface UserService {
    * @return the user
    * @throws ServiceException the service exception
    */
-  User findUserById(int id) throws ServiceException;
+  Optional<User> findUserById(int id) throws ServiceException;
 
   /**
    * Find user by email boolean.

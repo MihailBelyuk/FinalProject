@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
     <c:import url="header.jsp"/>
 </head>
-<body>
-<a href="${pageContext.request.contextPath}/controller?command=go_to_cart">Cart</a>
+<body style="background-color: rgba(106,155,55,0.5)">
 <div class="reg_success_message">
     <c:out value="${registration_successful}"/>
     <c:out value="${no_matching_items}"/>
 </div>
-<table>
+<table style="margin:20px 20px 20px 20px">
     <tbody style="border: 5px #2a2a2a;">
     <c:forEach var="item" items="${search_items}">
         <tr style="border-color: #2a2a2a;border-width: 1px; background-color: rgba(240,227,221,0.73)">
@@ -32,7 +31,7 @@
                 </c:if>
             </td>
             <td>
-                <form action="${pageContext.request.contextPath}/controller">
+                <form action="${pageContext.request.contextPath}/controller" method="post">
                     <input type="hidden" name="command" value="add_to_cart"/>
                     <input type="hidden" name="item_name" value="<c:out value="${item.name}"/>">
                     <input type="submit" name="sub" value="Add to cart"/>
@@ -45,7 +44,7 @@
     </tbody>
 </table>
 </body>
-<footer style="padding-top: 650px">
+<footer>
     <c:import url="footer.jsp"/>
 </footer>
 </html>

@@ -12,9 +12,12 @@
     <title>Client Room</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 </head>
-<body>
+<body style="background-color: rgba(106,155,55,0.5)">
 <div>
         <a href="${pageContext.request.contextPath}/controller?command=logout"> ${logout}</a>
 </div>
 </body>
+<footer>
+    <c:import url="footer.jsp"/>
+</footer>
 </html>

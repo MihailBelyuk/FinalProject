@@ -2,7 +2,6 @@ package com.belyuk.shop.command.impl.common;
 
 import com.belyuk.shop.command.Command;
 import com.belyuk.shop.command.Router;
-import com.belyuk.shop.command.constant.AttributeParameterName;
 import com.belyuk.shop.command.constant.PagePath;
 import com.belyuk.shop.entity.service.impl.UserServiceImpl;
 import com.belyuk.shop.entity.service.validator.impl.UserValidatorImpl;
@@ -19,9 +18,7 @@ import static com.belyuk.shop.command.constant.AttributeParameterName.*;
 import static com.belyuk.shop.command.constant.Message.*;
 
 public class RegisterUserCommand implements Command {
-
   private static final Logger logger = LogManager.getLogger();
-
   private final UserServiceImpl userService = UserServiceImpl.getUserService();
   private final UserValidatorImpl userValidator = UserValidatorImpl.getInstance();
 
@@ -29,7 +26,7 @@ public class RegisterUserCommand implements Command {
   public Router execute(HttpServletRequest request) throws CommandException {
     String currentPage = String.valueOf(request.getSession().getAttribute(CURRENT_PAGE_ATTR));
 
-    String lastName = request.getParameter(AttributeParameterName.LAST_NAME_ATTR).strip();
+    String lastName = request.getParameter(LAST_NAME).strip();
     if (lastName.isBlank()) {
       request.setAttribute(EMPTY_LAST_NAME_ATTR, FILL_LAST_NAME_MSG);
     } else if (!userValidator.validateLastName(lastName)) {
@@ -38,7 +35,7 @@ public class RegisterUserCommand implements Command {
       request.setAttribute(LAST_NAME_ATTR, lastName);
     }
 
-    String name = request.getParameter(AttributeParameterName.NAME_ATTR).strip();
+    String name = request.getParameter(NAME).strip();
     if (name.isBlank()) {
       request.setAttribute(EMPTY_NAME_ATTR, FILL_NAME_MSG);
     } else if (!userValidator.validateUserName(name)) {
@@ -47,7 +44,7 @@ public class RegisterUserCommand implements Command {
       request.setAttribute(NAME_ATTR, name);
     }
 
-    String password = request.getParameter(AttributeParameterName.PASSWORD_ATTR).strip();
+    String password = request.getParameter(PASSWORD).strip();
     if (password.isBlank()) {
       request.setAttribute(EMPTY_PASSWORD_ATTR, FILL_PASSWORD_MSG);
     } else if (!userValidator.validatePassword(password)) {
@@ -56,7 +53,7 @@ public class RegisterUserCommand implements Command {
       request.setAttribute(PASSWORD_ATTR, password);
     }
 
-    String eMail = request.getParameter(AttributeParameterName.EMAIL_ATTR).strip();
+    String eMail = request.getParameter(EMAIL).strip();
     try {
       if (eMail.isBlank()) {
         request.setAttribute(EMPTY_E_MAIL_ATTR, FILL_E_MAIL_MSG);
@@ -71,13 +68,12 @@ public class RegisterUserCommand implements Command {
       throw new CommandException("Failed to register user", e);
     }
 
-    String phoneNumber = request.getParameter(AttributeParameterName.PHONE_NUMBER_ATTR).strip();
+    String phoneNumber = request.getParameter(PHONE_NUMBER).strip();
     if (phoneNumber.isBlank()) {
       request.setAttribute(EMPTY_PHONE_NUMBER_ATTR, FILL_PHONE_NUMBER_MSG);
     } else if (userValidator.validatePhoneNumber(phoneNumber)) {
       request.setAttribute(WRONG_INPUT_PHONE_NUMBER_ATTR, WRONG_PHONE_NUMBER_FORMAT_MSG);
     }
-
     if (!lastName.isBlank()
         && !name.isBlank()
         && !password.isBlank()
@@ -88,7 +84,6 @@ public class RegisterUserCommand implements Command {
           && userValidator.validatePassword(password)
           && userValidator.validateEmail(eMail)
           && userValidator.validatePhoneNumber(phoneNumber)) {
-
         try {
           if (!userService.registerUser(lastName, name, password, eMail, phoneNumber)) {
             request

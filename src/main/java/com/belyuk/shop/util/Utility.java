@@ -3,8 +3,7 @@ package com.belyuk.shop.util;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class Utility {
-
-  private static Utility instance = new Utility();
+  private static final Utility instance = new Utility();
 
   private Utility() {}
 
